@@ -36,6 +36,10 @@ main {
   display: flex;
   height: 8vh;
 }
+.message-panel{
+  margin: 0.5rem 0 0.5rem 0;
+  padding: 5px;
+ }
 
 .chat-messages{
   background-color: #EEEEEE;

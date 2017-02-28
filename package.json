@@ -1,0 +1,30 @@
+{
+  "name": "ezchat",
+  "version": "0.0.1",
+  "description": "Where the Heartless talk shit.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.1",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "devback": "nodemon server",
+    "devfront": "echo \"This task is a planned feature\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heartless-gaming/ezChat.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "Heartless Gaming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heartless-gaming/ezChat/issues"
+  },
+  "homepage": "https://github.com/heartless-gaming/ezChat#readme"
+}

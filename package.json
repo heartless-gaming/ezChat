@@ -7,7 +7,8 @@
     "express": "^4.14.1",
     "socket.io": "^1.7.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",

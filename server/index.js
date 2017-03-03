@@ -16,10 +16,9 @@ let express = require('express')
 let app = express()
 let server = require('http').createServer(app)
 let io = require('socket.io')(server)
-let port = process.env.PORT || ezchatConfig.serverPort
 
-server.listen(port, function () {
-  console.log('Server listening at port %d', port)
+server.listen(ezchatConfig.serverPort, function () {
+  console.log('Server listening at port %d', ezchatConfig.serverPort)
 })
 
 // Routing

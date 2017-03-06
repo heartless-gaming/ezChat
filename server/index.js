@@ -26,10 +26,9 @@ let frontRoute = path.join(ezchatConfig.path.root, ezchatConfig.path.frontFolder
 app.use(express.static(frontRoute))
 
 // Chatroom
-
 let numUsers = 0
 
-io.on('connection', function (socket) {
+io.on('connect', function (socket) {
   let addedUser = false
 
   // when the client emits 'new message', this listens and executes

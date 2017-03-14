@@ -43,7 +43,6 @@
     "devback": "nodemon server",
     "devfront": "echo \"This task is a planned feature\" && exit 1",
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

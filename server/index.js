@@ -6,7 +6,7 @@ let ezchatConfig = {
   serverPort: 3000,
   path: {
     root: path.join(__dirname, '..'),
-    frontFolderName: 'front',
+    frontFolderName: 'dist',
     backFolderName: 'server'
   }
 }

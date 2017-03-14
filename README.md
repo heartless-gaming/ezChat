@@ -4,6 +4,35 @@ Where the Heartless talk shit, a simple chat for the heatless gamming community.
 <p align="center">
     <img src="https://jlynnrowanliterature.files.wordpress.com/2013/02/minion.gif">
 </p>
+
+## Installation
+first of all you need angular-cli and nodemon:
+```bash
+# nodemon
+$ npm install -g nodemon
+# angular-cli
+$ npm install -g @angular/cli@latest
+```
+### DEV
+To install for dev you need to :  
+```bash
+# build the front part and watch for changes:
+$ ng build --watch
+```
+In a separate terminal
+```bash
+# launch the server :
+$ npm run devback
+```
+
+### PROD
+To install for prod you need to
+```bash
+# build the front part :
+$ ng build
+# launch the server :
+$ npm start
+```
 ## Front
 angular cli : https://github.com/angular/angular-cli  
 angular material2  (ez component / easy theming) :  https://github.com/angular/material2  
@@ -20,7 +49,7 @@ Fonctionnalities :
 - sound notifiaction ? (maybe borring will see)
 
 ### TODOs
-- init project
+- init project : done
 - maquette with real component
 - integration API
 

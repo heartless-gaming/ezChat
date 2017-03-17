@@ -5,6 +5,8 @@ For all the exemple below `socket = io()`.
 
 Event list :
 - [New Message](#new-message)
+- [Add User](#add-user)
+- [User Joined](#user-joined)
 
 ## New Message
 When a clients emit a *new message* event the server broadcast a *new message* event that returns an object containing the username and message.
@@ -34,7 +36,34 @@ socket.on('new message', function (data) {
 ```
 
 ## Add user
-When a clients emit a *add user* event the server returns an object with the username and the content of the message. This event can be called on the **connect** and **reconnect** event.
+A client emit *add user* once a user as set is username.
+
+**Client / Front**
+```js
+// Tell the server your username
+socket.emit('add user', username);
+```
+
+## User Joined
+
+The server broadcast a *user joined* event upon receiving an [add user](#add-user) event. Returns an object containing the username of the user that has just join in and the number of people in the chat has a second argument.
+
+**Client / Front**
+```js
+// Listen to client joining the chat
+socket.on('user joined', function (data) {
+  // data = {username: Skullmasher, numUsers: 6}
+});
+```
+
+**Server / Back**
+```js
+// Tell all clients that a person has connected
+socket.broadcast.emit('user joined', {
+  username: socket.username,
+  numUsers: numUsers
+})
+```
 
 **Note:** The following events are reserved and should not be used as event names by your application:
 - `error`

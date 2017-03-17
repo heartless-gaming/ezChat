@@ -5,29 +5,28 @@ Where the Heartless talk shit, a simple chat for the heatless gamming community.
     <img src="https://jlynnrowanliterature.files.wordpress.com/2013/02/minion.gif">
 </p>
 
-## Installation
+This app is curently under developement and will be available under [heartlessgaming.com/ezChat](https://heartlessgaming/ezChat). 
+
+Instruction on how to self-host your own ezChat will be available soon. For the time being you can continue reading to contribute to the project.
+
+## Start coding
+
+Intall the project dependencie using a regular npm install.
 ```bash
-$ npm install
+$ npm i
 ```
 
-### DEV
-Start a live reload server.
+Start a live reload server that listen to file changes on front end.
 ```bash
-$ ng serve
-```
-
-### PROD
-To install for prod you need to
-```bash
-# build the front part :
-$ ng build
-# launch the server :
 $ npm start
 ```
+
+## 
+
 ## Front
 angular cli : https://github.com/angular/angular-cli  
 angular material2  (ez component / easy theming) :  https://github.com/angular/material2  
-Fonctionnalities :  
+Fonctionnalities :
 - see who is connected
 - see new messages
   - emoji interpretation
@@ -35,7 +34,6 @@ Fonctionnalities :
   - youtube interpretation
 - write a message
   - emoji selector
-
 - notification in browser tab
 - sound notifiaction ? (maybe borring will see)
 
@@ -43,7 +41,6 @@ Fonctionnalities :
 - init project : done
 - maquette with real component
 - integration API
-
 
 ## Back :skull:
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)

@@ -40,7 +40,7 @@
   },
   "scripts": {
     "test": "ng test",
-    "start": "node server/index.js",
+    "start": "ng serve",
     "devback": "nodemon server",
     "devfront": "echo \"This task is a planned feature\" && exit 1",
     "ng": "ng",

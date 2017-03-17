@@ -7,6 +7,8 @@ Event list :
 - [New Message](#new-message)
 - [Add User](#add-user)
 - [User Joined](#user-joined)
+- [Typing](#typing)
+- [Stop Typing](#stop-typing)
 
 ## New Message
 When a clients emit a *new message* event the server broadcast a *new message* event that returns an object containing the username and message.
@@ -62,6 +64,40 @@ socket.on('user joined', function (data) {
 socket.broadcast.emit('user joined', {
   username: socket.username,
   numUsers: numUsers
+})
+```
+
+## Typing
+There's no need to pass argument to the *typing* event from the client side because the server will match who is typing with *socket.username*. The server returns the username curently typing (might need refactoring).
+
+**Client / Front**
+```js
+socket.emit('typing');
+```
+**Server / Back**
+```js
+// when the client emits 'typing', we broadcast it to others
+socket.on('typing', function () {
+  socket.broadcast.emit('typing', {
+    username: socket.username
+  })
+})
+```
+
+## Stop Typing
+There's no need to pass argument to the *stop typing* event from the client side because the server will match who is typing with *socket.username*. The server returns the username that is no longer typing.
+
+**Client / Front**
+```js
+socket.emit('stop typing');
+```
+**Server / Back**
+```js
+// when the client emits 'stop typing', we broadcast it to others
+socket.on('stop typing', function () {
+  socket.broadcast.emit('stop typing', {
+    username: socket.username
+  })
 })
 ```
 

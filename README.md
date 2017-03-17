@@ -7,8 +7,6 @@ Where the Heartless talk shit, a simple chat for the heatless gamming community.
 
 This app is curently under developement and will be available under [heartlessgaming.com/ezChat](https://heartlessgaming/ezChat). 
 
-Instruction on how to self-host your own ezChat will be available soon. For the time being you can continue reading to contribute to the project.
-
 ## Start coding
 
 Intall the project dependencie using a regular npm install.
@@ -22,6 +20,12 @@ $ npm start
 ```
 
 Start coding with a simple `npm start` from there on out.
+
+## Self Host
+
+**Front :** Use `npm run build` to build the project for Production environement. A *dist* directory will be created containing the app code ready to be hosted on your web server.
+
+**Back :** start the *server/index.js* file under a forever process. (Details will be added soon)
 
 ## Front
 angular cli : https://github.com/angular/angular-cli  
@@ -56,10 +60,3 @@ npm run devback
 Restart de dev when change are made to the server directory (use [nodemon](https://github.com/remy/nodemon)).
 
 Express : http://expressjs.com/
-
-
-
-###TODOs
-- Make express route
-- Make a 'prodserver' npm task that use [forever](https://github.com/foreverjs/forever).
-- Make a 'dev' npm task that start the 'devfront' task & the 'devback' in parrallel.

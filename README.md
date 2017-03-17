@@ -6,23 +6,14 @@ Where the Heartless talk shit, a simple chat for the heatless gamming community.
 </p>
 
 ## Installation
-first of all you need angular-cli and nodemon:
 ```bash
-# nodemon
-$ npm install -g nodemon
-# angular-cli
-$ npm install -g @angular/cli@latest
+$ npm install
 ```
+
 ### DEV
-To install for dev you need to :  
+Start a live reload server.
 ```bash
-# build the front part and watch for changes:
-$ ng build --watch
-```
-In a separate terminal
-```bash
-# launch the server :
-$ npm run devback
+$ ng serve
 ```
 
 ### PROD

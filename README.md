@@ -16,12 +16,12 @@ Intall the project dependencie using a regular npm install.
 $ npm i
 ```
 
-Start a live reload server that listen to file changes on front end.
+Start a live reload server on [localhost:4200](http://localhost:4200) that listen to file changes of the front end **and** back end. (thanks [Parallelshell](https://github.com/keithamus/parallelshell))
 ```bash
 $ npm start
 ```
 
-## 
+Start coding with a simple `npm start` from there on out.
 
 ## Front
 angular cli : https://github.com/angular/angular-cli  

@@ -67,6 +67,17 @@ socket.broadcast.emit('user joined', {
 })
 ```
 
+## User Left
+The client side listen to this event to know when a user as left the chat. Also returns the number of people in the chat has a second argument.
+
+**Client / Front**
+```js
+// Listen to a client that left the chat
+socket.on('user left', function (data) {
+  // data = {username: Skullmasher, numUsers: 6}
+});
+```
+
 ## Typing
 There's no need to pass argument to the *typing* event from the client side because the server will match who is typing with *socket.username*. The server returns the username curently typing (might need refactoring).
 
@@ -100,6 +111,18 @@ socket.on('stop typing', function () {
   })
 })
 ```
+
+## Diconnect
+Reserved event that the server is listenning to. Returns a *user left* event containing the username of the user that just left and the number of user still chatting.
+
+**Server / Back**
+socket.on('disconnect', function () {
+  // Tells all clients that someone has disconnect
+  socket.broadcast.emit('user left', {
+    username: socket.username,
+    numUsers: numUsers
+  })
+})
 
 **Note:** The following events are reserved and should not be used as event names by your application:
 - `error`

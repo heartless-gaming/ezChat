@@ -12,7 +12,6 @@ Event list :
 - [Stop Typing](#stop-typing)
 - [Diconnect](#disconnect)
 
-
 ## New Message
 When a clients emit a *new message* event the server broadcast a *new message* event that returns an object containing the username and message.
 

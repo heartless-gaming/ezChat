@@ -23,6 +23,7 @@
     "@angular/compiler-cli": "^2.4.0",
     "@types/jasmine": "2.5.46",
     "@types/node": "~7.0.8",
+    "browser-sync": "^2.18.8",
     "codelyzer": "~3.0.0-beta.3",
     "concurrently": "^3.4.0",
     "jasmine-core": "~2.5.2",
@@ -41,11 +42,12 @@
   },
   "scripts": {
     "test": "ng test",
-    "start": "concurrently --kill-others \"ng serve\" \"npm run devback\"",
+    "start": "concurrently --kill-others \"npm run devback\" \"npm run build\" \"npm run livereload\"",
     "devback": "nodemon server",
     "devfront": "ng serve",
     "ng": "ng",
-    "build": "ng build",
+    "build": "ng build --watch",
+    "livereload": "browser-sync start -p 'http://localhost:3000' -f 'dist' --ws --no-inject-changes",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

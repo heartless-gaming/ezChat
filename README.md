@@ -5,38 +5,32 @@ Where the Heartless talk shit, a simple chat for the heatless gamming community.
     <img src="https://jlynnrowanliterature.files.wordpress.com/2013/02/minion.gif">
 </p>
 
-## Installation
-first of all you need angular-cli and nodemon:
+This app is curently under developement and will be available under [heartlessgaming.com/ezChat](https://heartlessgaming/ezChat). 
+
+## Start coding
+
+Intall the project dependencie using a regular npm install.
 ```bash
-# nodemon
-$ npm install -g nodemon
-# angular-cli
-$ npm install -g @angular/cli@latest
-```
-### DEV
-To install for dev you need to :  
-```bash
-# build the front part and watch for changes:
-$ ng build --watch
-```
-In a separate terminal
-```bash
-# launch the server :
-$ npm run devback
+$ npm i
 ```
 
-### PROD
-To install for prod you need to
+Start a live reload server on [localhost:4200](http://localhost:4200) that listen to file changes of the front end **and** back end. (thanks [Parallelshell](https://github.com/keithamus/parallelshell))
 ```bash
-# build the front part :
-$ ng build
-# launch the server :
 $ npm start
 ```
+
+Start coding with a simple `npm start` from there on out.
+
+## Self Host
+
+**Front :** Use `npm run build` to build the project for Production environement. A *dist* directory will be created containing the app code ready to be hosted on your web server.
+
+**Back :** start the *server/index.js* file under a forever process. (Details will be added soon)
+
 ## Front
 angular cli : https://github.com/angular/angular-cli  
 angular material2  (ez component / easy theming) :  https://github.com/angular/material2  
-Fonctionnalities :  
+Fonctionnalities :
 - see who is connected
 - see new messages
   - emoji interpretation
@@ -44,7 +38,6 @@ Fonctionnalities :
   - youtube interpretation
 - write a message
   - emoji selector
-
 - notification in browser tab
 - sound notifiaction ? (maybe borring will see)
 
@@ -52,7 +45,6 @@ Fonctionnalities :
 - init project : done
 - maquette with real component
 - integration API
-
 
 ## Back :skull:
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
@@ -68,10 +60,3 @@ npm run devback
 Restart de dev when change are made to the server directory (use [nodemon](https://github.com/remy/nodemon)).
 
 Express : http://expressjs.com/
-
-
-
-###TODOs
-- Make express route
-- Make a 'prodserver' npm task that use [forever](https://github.com/foreverjs/forever).
-- Make a 'dev' npm task that start the 'devfront' task & the 'devback' in parrallel.

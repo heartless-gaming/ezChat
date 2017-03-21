@@ -21,9 +21,42 @@ server.listen(ezchatConfig.serverPort, function () {
   console.log('Server listening at port %d', ezchatConfig.serverPort)
 })
 
-// Routing
+/*
+ * Routing
+ */
 let frontRoute = path.join(ezchatConfig.path.root, ezchatConfig.path.frontFolderName)
 app.use(express.static(frontRoute))
+
+// userlist return the userlist & the number of users
+app.get('/users', function (req, res) {
+  res.send({
+    'userlist': [
+      'Skullmasher',
+      'ADN',
+      'Gordon Freeman',
+      'G-Man',
+      'Neo',
+      'Smith',
+      'Shittyflute'
+    ],
+    'userCount': 4
+  })
+})
+
+app.get('/messages', function (req, res) {
+  res.send([
+    {author: 'ADN', text: 'Skull, please stop believing in another Half-Life game.'},
+    {author: 'ADN', text: 'It\'s getting ridiculous at this point...'},
+    {author: 'Skullmasher', text: 'But I want to believe tho...'},
+    {author: 'G-Man', text: 'Prepare for unforeseen consequences'},
+    {author: 'Skullmasher', text: 'Holy Shit !'},
+    {author: 'Gordon Freeman', text: '*Gordon is mute*'},
+    {author: 'Smith', text: 'Why, Mr. Anderson? Why, why? Why do you do it? Why, why get up? Why keep fighting? Do you believe you\'re fighting... for something? For more than your survival? Can you tell me what it is? Do you even know? Is it freedom? Or truth? Perhaps peace? Could it be for love? Illusions, Mr. Anderson. Vagaries of perception. Temporary constructs of a feeble human intellect trying desperately to justify an existence that is without meaning or purpose. And all of them as artificial as the Matrix itself, although... Only a human mind could invent something as insipid as love. You must be able to see it, Mr. Anderson. You must know it by now. You can\'t win. It\'s pointless to keep fighting. Why, Mr. Anderson? Why? Why do you persist?'},
+    {author: 'Neo', text: 'Because I choose to.'},
+    {author: 'Skullmasher', text: 'https://youtu.be/_f6MRkTLT9o'},
+    {author: 'ADN', text: 'https://i.imgur.com/JavMJGH.mp4'}
+  ])
+})
 
 // Chatroom
 let numUsers = 0

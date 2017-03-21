@@ -45,8 +45,8 @@
       <div class="row row-chat-box">
     <form (ngSubmit)="newMessage()">
            <div class="input-field col s11">
-             <input id="textarea1" type="text"  [ngModelOptions]="{standalone: true}" [(ngModel)]="currentMessage">
-             <label for="textarea1">Textarea</label>
+             <input id="textarea1" type="text" autocomplete="off" [ngModelOptions]="{standalone: true}" [(ngModel)]="currentMessage">
+             <label for="textarea1">Type a message</label>
            </div>
 
 

@@ -8,17 +8,17 @@ import { MessagesService } from './messages.service';
   styleUrls: ['./app.component.css'],
   providers:[MessagesService]
 })
+
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'It will be magnificent soon!';
-  private allMessages : {}[] = [{author:"yolo", text:"swagg"}];
+  private allMessages : {}[] = [{author: 'yolo', text: 'swagg'}];
   private currentMessage : string = "";
-  private userName : string = "Change Me";
+  private userName : string = "Anonymous";
   private onlineUsers : string[];
 
   connection;
 
-
   constructor(private messagesService:MessagesService) {}
+
   newMessage(){
     let messageToSend : Message = {author:this.userName, text:this.currentMessage};
     this.messagesService.sendMessage(messageToSend);
@@ -36,5 +36,4 @@ export class AppComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
-
 }

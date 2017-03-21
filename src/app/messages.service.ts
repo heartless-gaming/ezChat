@@ -6,24 +6,24 @@ import {Message} from './message';
 @Injectable()
 export class MessagesService {
   private url = 'http://localhost:3000';
-    private socket;
+  private socket;
 
 
-    constructor() { }
-    sendMessage(message: Message){
-      this.socket.emit('new message', message);
-    }
+  constructor() { }
+  sendMessage(message: Message){
+    this.socket.emit('new message', message);
+  }
 
-    getMessages() {
-      let observable = new Observable(observer => {
-        this.socket = io(this.url);
-        this.socket.on('new message', (data: Message) => {
-          observer.next(data);
-        });
-        return () => {
-          this.socket.disconnect();
-        };
-      })
-      return observable;
-    }
+  getMessages() {
+    let observable = new Observable(observer => {
+      this.socket = io(this.url);
+      this.socket.on('new message', (data: Message) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
 }

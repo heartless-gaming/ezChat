@@ -30,7 +30,7 @@ app.use(express.static(frontRoute))
 // userlist return the userlist & the number of users
 app.get('/users', function (req, res) {
   res.send({
-    'userlist': [
+    'users': [
       'Skullmasher',
       'ADN',
       'Gordon Freeman',
@@ -45,6 +45,7 @@ app.get('/users', function (req, res) {
 
 app.get('/messages', function (req, res) {
   res.send([
+    {author: 'yolo', text: 'swagg'},
     {author: 'ADN', text: 'Skull, please stop believing in another Half-Life game.'},
     {author: 'ADN', text: 'It\'s getting ridiculous at this point...'},
     {author: 'Skullmasher', text: 'But I want to believe tho...'},
@@ -67,8 +68,8 @@ io.on('connect', function (socket) {
   // when a client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     // we tell all clients to execute 'new message'
-    console.log("new message from :" + data.author )
-    console.log("Text :" + data.text )
+    console.log('new message from :' + data.author)
+    console.log('Text :' + data.text)
     socket.broadcast.emit('new message', {
       author: data.author,
       text: data.text

@@ -4,8 +4,6 @@
   "description": "Where the Heartless talk shit.",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.14.1",
-    "socket.io": "^1.7.3",
     "@angular/common": "^2.4.0",
     "@angular/compiler": "^2.4.0",
     "@angular/core": "^2.4.0",
@@ -14,8 +12,11 @@
     "@angular/platform-browser": "^2.4.0",
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
+    "@types/socket.io-client": "^1.4.29",
     "core-js": "^2.4.1",
+    "express": "^4.14.1",
     "rxjs": "^5.1.0",
+    "socket.io": "^1.7.3",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
@@ -23,7 +24,6 @@
     "@angular/compiler-cli": "^2.4.0",
     "@types/jasmine": "2.5.46",
     "@types/node": "~7.0.8",
-    "browser-sync": "^2.18.8",
     "codelyzer": "~3.0.0-beta.3",
     "concurrently": "^3.4.0",
     "jasmine-core": "~2.5.2",
@@ -42,7 +42,7 @@
   },
   "scripts": {
     "test": "ng test",
-    "start": "concurrently --kill-others \"npm run devback\" \"npm run build\" \"npm run livereload\"",
+    "start": "concurrently --kill-others \"ng build --watch\" \"npm run devback\"",
     "devback": "nodemon server",
     "devfront": "ng serve",
     "ng": "ng",

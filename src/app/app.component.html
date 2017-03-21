@@ -1,3 +1,65 @@
-<h1>
-  {{title}}
-</h1>
+<ul id="slide-out" class="side-nav fixed grey darken-4">
+  <li><div class="userView">
+    <div class="background">
+      <img src="assets/img/starbucks.jpg">
+    </div>
+    <a href="#!user"><img class="circle" src="https://a4-images.myspacecdn.com/images03/2/85a286a4bbe84b56a6d57b1e5bd03ef4/300x300.jpg"></a>
+    <a href="#!name"><span class="white-text name"> <input type="text" [(ngModel)]="userName"></span></a>
+    <a href="#!email"><span class="white-text email"></span></a>
+  </div></li>
+  <li><a class="grey-text text-lighten-1" href="#!">4 - Online user<i class="material-icons grey-text text-lighten-1">perm_identity</i></a></li>
+  <li><div class="divider grey-text text-lighten-1"></div></li>
+  <li *ngFor="let user of onlineUsers"><a class="subheader grey-text text-lighten-1">{{user}}</a></li>
+</ul>
+<header>
+  <nav class="red darken-4 chat-nav z-depth-3" role="navigation">
+    <a id="logo-container" href="#" class="brand-logo right">ezchat</a>
+      <ul class="right hide-on-med-and-down">
+
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+  </nav>
+</header>
+<main>
+  <div class="chat-messages grey darken-3">
+    <div class="row row-messages">
+      <div class="col s12" *ngFor="let message of allMessages">
+        <div class="card-panel message-panel grey darken-3">
+
+            <span class="message-author grey-text text-lighten-1">{{message.author}}</span>
+            :
+            <span class="white-text">
+              {{message.text}}
+            </span>
+
+        </div>
+      </div>
+      </div>
+  </div>
+  <div class="chat-box grey darken-4">
+      <div class="row row-chat-box">
+    <form (ngSubmit)="newMessage()">
+           <div class="input-field col s11">
+             <input id="textarea1" type="text"  [ngModelOptions]="{standalone: true}" [(ngModel)]="currentMessage">
+             <label for="textarea1">Textarea</label>
+           </div>
+
+
+     <div class="fixed-action-btn">
+      <button type="button" class="btn-floating btn-large red darken-4">
+        <i class="large material-icons">send</i>
+      </button>
+    </div>
+    </form>
+    </div>
+  </div>
+</main>
+
+<footer>
+
+</footer>

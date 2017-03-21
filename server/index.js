@@ -34,18 +34,20 @@ io.on('connect', function (socket) {
   // when a client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     // we tell all clients to execute 'new message'
+    console.log("new message from :" + data.author )
+    console.log("Text :" + data.text )
     socket.broadcast.emit('new message', {
-      username: socket.username,
-      message: data
+      author: data.author,
+      text: data.text
     })
   })
 
   // when the client emits 'add user', this listens and executes
-  socket.on('add user', function (username) {
+  socket.on('add user', function (author) {
     if (addedUser) return
 
-    // we store the username in the socket session for this client
-    socket.username = username
+    // we store the author in the socket session for this client
+    socket.author = author
     ++numUsers
     addedUser = true
     socket.emit('login', {
@@ -53,7 +55,7 @@ io.on('connect', function (socket) {
     })
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
-      username: socket.username,
+      author: socket.author,
       numUsers: numUsers
     })
   })
@@ -61,14 +63,14 @@ io.on('connect', function (socket) {
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', function () {
     socket.broadcast.emit('typing', {
-      username: socket.username
+      author: socket.author
     })
   })
 
   // when the client emits 'stop typing', we broadcast it to others
   socket.on('stop typing', function () {
     socket.broadcast.emit('stop typing', {
-      username: socket.username
+      author: socket.author
     })
   })
 
@@ -79,7 +81,7 @@ io.on('connect', function (socket) {
 
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
-        username: socket.username,
+        author: socket.author,
         numUsers: numUsers
       })
     }

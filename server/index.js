@@ -1,5 +1,7 @@
-// nodeJS path resolution module https://nodejs.org/api/path.html
-let path = require('path')
+// Require some deps
+
+let path = require('path') // nodeJS path resolution module https://nodejs.org/api/path.html
+let _ = require('lodash')
 
 // Back office / node Server Configuration variables
 let ezchatConfig = {
@@ -30,19 +32,12 @@ app.use(express.static(frontRoute))
 // userlist return the userlist & the number of users
 app.get('/users', function (req, res) {
   res.send({
-    'users': [
-      'Skullmasher',
-      'ADN',
-      'Gordon Freeman',
-      'G-Man',
-      'Neo',
-      'Smith',
-      'Shittyflute'
-    ],
-    'userCount': 4
+    'users': users,
+    'userCount': userCount
   })
 })
 
+// massages return the last 100 message
 app.get('/messages', function (req, res) {
   res.send([
     {author: 'yolo', text: 'swagg'},
@@ -60,16 +55,26 @@ app.get('/messages', function (req, res) {
 })
 
 // Chatroom
-let numUsers = 0
+let userCount = 0
+let users = []
 
 io.on('connect', function (socket) {
   let addedUser = false
 
   // when a client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
-    // we tell all clients to execute 'new message'
+    // If the user does not exist add him to the users array
+    if (users.indexOf(data.author) === -1) {
+      users.push(data.author)
+      console.log(data.author + 'Added to userlist')
+    }
+
     console.log('new message from :' + data.author)
     console.log('Text :' + data.text)
+    ++userCount
+    addedUser = true
+
+    // we tell all clients to execute 'new message'
     socket.broadcast.emit('new message', {
       author: data.author,
       text: data.text
@@ -82,15 +87,13 @@ io.on('connect', function (socket) {
 
     // we store the author in the socket session for this client
     socket.author = author
-    ++numUsers
-    addedUser = true
     socket.emit('login', {
-      numUsers: numUsers
+      userCount: userCount
     })
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
       author: socket.author,
-      numUsers: numUsers
+      userCount: userCount
     })
   })
 
@@ -111,12 +114,14 @@ io.on('connect', function (socket) {
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
     if (addedUser) {
-      --numUsers
+      --userCount
+      _.pull(users, socket.author)
+      console.log(users)
 
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
         author: socket.author,
-        numUsers: numUsers
+        userCount: userCount
       })
     }
   })

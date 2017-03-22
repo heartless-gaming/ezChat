@@ -115,7 +115,7 @@ io.on('connect', function (socket) {
   socket.on('disconnect', function () {
     if (addedUser) {
       --userCount
-      _.pull(users, socket.author)
+      _.pull(users, socket.author) // Does not work
       console.log(users)
 
       // echo globally that this client has left

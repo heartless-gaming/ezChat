@@ -76,7 +76,7 @@ io.on('connect', function (socket) {
     console.log('Text :' + data.text)
     ++userCount
     addedUser = true
-    messages.push({author: data.author , text: data.text})
+    messages.push({author: data.author, text: data.text})
     // we tell all clients to execute 'new message'
     socket.broadcast.emit('new message', {
       author: data.author,

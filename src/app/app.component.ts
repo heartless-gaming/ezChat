@@ -10,10 +10,11 @@ import { MessagesService } from './messages.service';
 })
 
 export class AppComponent implements OnInit, OnDestroy{
-  private allMessages : {}[] = [{author: 'yolo', text: 'swagg'}];
+  private allMessages : Message[];
   private currentMessage : string = "";
   private userName : string = "Anonymous";
-  private onlineUsers : string[];
+  private onlineUsers : string[]=[];
+  private errorMessage: string;
 
   connection;
 
@@ -22,18 +23,38 @@ export class AppComponent implements OnInit, OnDestroy{
   newMessage(){
     let messageToSend : Message = {author:this.userName, text:this.currentMessage};
     this.messagesService.sendMessage(messageToSend);
-    this.allMessages.push(messageToSend);
     /*Clear*/
     this.currentMessage = "";
   }
 
   ngOnInit() {
+    this.getMessagesHistory();
+    this.getOnlineUsers();
     this.connection = this.messagesService.getMessages().subscribe(message => {
       this.allMessages.push(message);
-    })
+    });
+    this.connection = this.messagesService.getUsers().subscribe(user => {
+      this.onlineUsers.push(user);
+    });
+
   }
 
   ngOnDestroy() {
     this.connection.unsubscribe();
+  }
+
+  getMessagesHistory() {
+  this.messagesService.getMessagesHistory()
+                      .then(
+                        messagesHistory => this.allMessages = messagesHistory,
+                        error =>  this.errorMessage = <any>error);
+  }
+  getOnlineUsers() {
+  this.messagesService.getOnlineUsers()
+                      .then(
+                        users => {this.onlineUsers = users;
+                                  this.userName += this.onlineUsers.length;
+                        },
+                        error =>  this.errorMessage = <any>error);
   }
 }

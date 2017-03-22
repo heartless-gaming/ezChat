@@ -7,7 +7,7 @@
     <a href="#!name"><span class="white-text name"> <input type="text" [(ngModel)]="userName"></span></a>
     <a href="#!email"><span class="white-text email"></span></a>
   </div></li>
-  <li><a class="grey-text text-lighten-1" href="#!">4 - Online user<i class="material-icons grey-text text-lighten-1">perm_identity</i></a></li>
+  <li><a class="grey-text text-lighten-1" href="#!">{{onlineUsers.length}} - Online user<i class="material-icons grey-text text-lighten-1">perm_identity</i></a></li>
   <li><div class="divider grey-text text-lighten-1"></div></li>
   <li *ngFor="let user of onlineUsers"><a class="subheader grey-text text-lighten-1">{{user}}</a></li>
 </ul>

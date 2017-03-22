@@ -22,11 +22,30 @@ export class MessagesService {
             .toPromise()
             .then(response => response.json() as Message[])
             .catch(this.handleError);
-}
+  }
+
+  getOnlineUsers(): Promise<string[]>{
+  return this.http.get(this.url+'/users')
+            .toPromise()
+            .then(response => response.json().users as string[])
+            .catch(this.handleError);
+  }
   getMessages() {
-    let observable = new Observable(observer => {
+    let observable = new Observable<Message>(observer => {
       this.socket = io(this.url);
       this.socket.on('new message', (data: Message) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+  getUsers() {
+    let observable = new Observable<string>(observer => {
+      this.socket = io(this.url);
+      this.socket.on('user joined', (data: string) => {
         observer.next(data);
       });
       return () => {

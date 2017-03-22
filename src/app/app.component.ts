@@ -10,10 +10,11 @@ import { MessagesService } from './messages.service';
 })
 
 export class AppComponent implements OnInit, OnDestroy{
-  private allMessages : {}[] = [{author: 'yolo', text: 'swagg'}];
+  private allMessages : {}[];
   private currentMessage : string = "";
   private userName : string = "Anonymous";
   private onlineUsers : string[];
+  private errorMessage: string;
 
   connection;
 
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+    this.getMessagesHistory();
     this.connection = this.messagesService.getMessages().subscribe(message => {
       this.allMessages.push(message);
     })
@@ -35,5 +37,12 @@ export class AppComponent implements OnInit, OnDestroy{
 
   ngOnDestroy() {
     this.connection.unsubscribe();
+  }
+
+  getMessagesHistory() {
+  this.messagesService.getMessagesHistory()
+                      .then(
+                        messagesHistory => this.allMessages = messagesHistory,
+                        error =>  this.errorMessage = <any>error);
   }
 }

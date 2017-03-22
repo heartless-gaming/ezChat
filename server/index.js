@@ -23,19 +23,7 @@ server.listen(ezchatConfig.serverPort, function () {
   console.log('Server listening at port %d', ezchatConfig.serverPort)
 })
 
-/*
- * Routing
- */
-let frontRoute = path.join(ezchatConfig.path.root, ezchatConfig.path.frontFolderName)
-app.use(express.static(frontRoute))
-
-// userlist return the userlist & the number of users
-app.get('/users', function (req, res) {
-  res.send({
-    'users': users,
-    'userCount': userCount
-  })
-})
+// Test Mesage sample
 let messages = [
   {author: 'yolo', text: 'swagg'},
   {author: 'ADN', text: 'Skull, please stop believing in another Half-Life game.'},
@@ -49,6 +37,21 @@ let messages = [
   {author: 'Skullmasher', text: 'https://youtu.be/_f6MRkTLT9o'},
   {author: 'ADN', text: 'https://i.imgur.com/JavMJGH.mp4'}
 ]
+
+/*
+ * Routing
+ */
+let frontRoute = path.join(ezchatConfig.path.root, ezchatConfig.path.frontFolderName)
+app.use(express.static(frontRoute))
+
+// userlist return the userlist & the number of users
+app.get('/users', function (req, res) {
+  res.send({
+    'users': users,
+    'userCount': userCount
+  })
+})
+
 // massages return the last 100 message
 app.get('/messages', function (req, res) {
   res.send(messages)
@@ -115,7 +118,7 @@ io.on('connect', function (socket) {
   socket.on('disconnect', function () {
     if (addedUser) {
       --userCount
-      _.pull(users, socket.author) // Does not work
+      _.pull(users, socket.author) // Does not work socket.author is not defined
       console.log(users)
 
       // echo globally that this client has left

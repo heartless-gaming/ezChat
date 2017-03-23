@@ -5,7 +5,7 @@ let _ = require('lodash') // helpers around javascript API
 // Back office / node Server Configuration variables
 let ezchatConfig = {
   serverPort: 3000,
-  messageLimit: 15,
+  massageHistory: 100, // Number of old message to show on user connection
   path: {
     root: path.join(__dirname, '..'),
     frontFolderName: 'dist',
@@ -63,7 +63,7 @@ let messages = [
 // Pull the last message if the Massage Aray reach the maximum number of message configured
 let updateMessages = function (author, text) {
   let msglength = messages.length
-  if (msglength >= ezchatConfig.messageLimit) {
+  if (msglength >= ezchatConfig.massageHistory) {
     messages.shift()
     messages.push({author: author, text: text})
     console.log('Massage limit as been reached. Pulling first message.')

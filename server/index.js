@@ -97,8 +97,13 @@ io.on('connect', function (socket) {
 
     console.log('socket id of new message : ' + socket.id)
 
-    // we tell all clients to execute 'new message'
+    // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
+      author: author,
+      text: text
+    })
+    // we tell all other clients to execute 'new message'
+    socket.emit('new message', {
       author: author,
       text: text
     })

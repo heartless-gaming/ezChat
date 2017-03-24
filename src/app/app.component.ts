@@ -3,6 +3,7 @@ import { Message } from './message';
 import { User } from './user';
 import { MessagesService } from './messages.service';
 import { UserService } from './user.service';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-root',

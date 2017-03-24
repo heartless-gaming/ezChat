@@ -41,20 +41,18 @@
       </div>
   </div>
   <div class="chat-box grey darken-3">
-      <div class="row row-chat-box">
-    <form (ngSubmit)="newMessage()">
-      <div class="input-field col s11">
-        <input id="textarea1" type="text" autocomplete="off" class="white-text" [ngModelOptions]="{standalone: true}" [(ngModel)]="currentMessage">
-        <label for="textarea1">Type a message</label>
-      </div>
-
-
-     <div class="fixed-action-btn">
-      <button type="button" class="btn-floating btn-large red darken-4" (click)="newMessage()">
-        <i class="large material-icons">send</i>
-      </button>
-    </div>
-    </form>
+    <div class="row row-chat-box">
+      <form (ngSubmit)="newMessage()">
+        <div class="input-field col s11">
+          <input id="textarea1" type="text" autocomplete="off" class="white-text" [ngModelOptions]="{standalone: true}" [(ngModel)]="currentMessage">
+          <label for="textarea1">Type a message</label>
+        </div>
+         <div class="fixed-action-btn">
+          <button type="button" class="btn-floating btn-large red darken-4" (click)="newMessage()">
+            <i class="large material-icons">send</i>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </main>

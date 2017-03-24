@@ -46,6 +46,7 @@ app.get('/messages', function (req, res) {
  */
 let userCount = 0
 let users = []
+let usersSocketId = [] // Bind users to the correct socketid
 let messages = [
   {author: 'yolo', text: 'swagg'},
   {author: 'ADN', text: 'Skull, please stop believing in another Half-Life game.'},
@@ -60,11 +61,11 @@ let messages = [
   {author: 'ADN', text: 'https://i.imgur.com/JavMJGH.mp4'}
 ] // Test Mesage sample
 
-// Pull the last message if the Massage Aray reach the maximum number of message configured
-let updateMessages = function (author, text) {
+// Pull the last message if the Message Array reach the maximum number of message configured
+let updateMessageHistory = function (author, text) {
   let msglength = messages.length
   if (msglength >= ezchatConfig.massageHistory) {
-    messages.shift()
+    messages.shift() // Delete the oldest message
     messages.push({author: author, text: text})
     console.log('Massage limit as been reached. Pulling first message.')
   } else {
@@ -74,26 +75,27 @@ let updateMessages = function (author, text) {
   }
 }
 
-let addNewUser = function (author) {
+let addNewUser = function (author, socketId) {
   // If the user does not exist add him to the users array
   if (users.indexOf(author) === -1) {
     users.push(author)
-    ++userCount
+    usersSocketId.push(socketId)
+    userCount++
     console.log(author + ' Added to userlist')
   }
 }
 
 io.on('connect', function (socket) {
-  let addedUser = false
-
+  console.log('A guy just connected : ' + socket.id)
   // when a client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     let author = data.author
     let text = data.text
 
-    addNewUser(author)
-    updateMessages(author, text)
-    addedUser = true
+    addNewUser(author, socket.id)
+    updateMessageHistory(author, text)
+
+    console.log('socket id of new message : ' + socket.id)
 
     // we tell all clients to execute 'new message'
     socket.broadcast.emit('new message', {
@@ -104,13 +106,11 @@ io.on('connect', function (socket) {
 
   // when the client emits 'add user', this listens and executes
   socket.on('add user', function (author) {
-    if (addedUser) return
-
     // we store the author in the socket session for this client
-    socket.author = author
     socket.emit('login', {
       userCount: userCount
     })
+
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
       author: socket.author,
@@ -133,18 +133,20 @@ io.on('connect', function (socket) {
   })
 
   // when the user disconnects.. perform this
-  socket.on('disconnect', function () {
-    if (addedUser) {
-      _.pull(users, socket.author) // Does not work socket.author is not defined
-      --userCount
-      console.log(userCount + ' user connected')
-      console.log(users)
-
-      // echo globally that this client has left
-      socket.broadcast.emit('user left', {
-        author: socket.author,
-        userCount: userCount
-      })
+  socket.on('disconnect', function (reason) {
+    // Remove user from user array by finding is socket.id
+    let socketIdIndex = usersSocketId.indexOf(socket.id)
+    if (socketIdIndex >= 0) {
+      _.pullAt(usersSocketId, socketIdIndex)
+      _.pullAt(users, socketIdIndex)
+      userCount--
     }
+    // echo globally that this client has left
+    socket.broadcast.emit('user left', {
+      author: socket.author,
+      userCount: userCount
+    })
+
+    console.log('A guy just disconnected : ' + socket.id + '(' + reason + ')')
   })
 })

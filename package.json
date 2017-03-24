@@ -43,7 +43,7 @@
   "scripts": {
     "test": "ng test",
     "start": "concurrently --kill-others \"ng build --watch\" \"npm run devback\"",
-    "devback": "nodemon server",
+    "devback": "nodemon server/index.js",
     "devfront": "ng serve",
     "ng": "ng",
     "build": "ng build --watch",

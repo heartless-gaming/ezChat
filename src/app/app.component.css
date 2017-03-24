@@ -31,3 +31,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #B71C1C;
   box-shadow: 0 1px 0 0 #B71C1C;
 }
+
+.row-text{
+      margin-bottom: 0px;
+}
+
+.message-img{
+  border-radius: 20px;
+}

@@ -1,10 +1,9 @@
 <ul id="slide-out" class="side-nav fixed grey darken-4">
   <li><div class="userView">
     <div class="background">
-      <img src="assets/img/starbucks.jpg">
+      <img class="header-img" src="assets/img/computer.jpg">
     </div>
-    <a href="#!user"><img class="circle" src="assets/img/daft-punk-avatar.jpg"></a>
-    <a href="#!name"><span class="white-text name"> <input type="text" [(ngModel)]="userName"></span></a>
+    <span class="white-text name"> <input type="text" [(ngModel)]="userName"></span>
     <a href="#!email"><span class="white-text email"></span></a>
   </div></li>
   <li><a class="grey-text text-lighten-1" href="#!">{{onlineUsers.length}} - Online user<i class="material-icons grey-text text-lighten-1">perm_identity</i></a></li>
@@ -26,7 +25,7 @@
   </nav>
 </header>
 <main>
-  <div class="chat-messages grey darken-3">
+  <div class="chat-messages grey darken-4">
     <div class="row row-messages">
       <div class="col s12" *ngFor="let message of allMessages">
         <div class="card-panel message-panel grey darken-3">
@@ -41,7 +40,7 @@
       </div>
       </div>
   </div>
-  <div class="chat-box grey darken-4">
+  <div class="chat-box grey darken-3">
       <div class="row row-chat-box">
     <form (ngSubmit)="newMessage()">
       <div class="input-field col s11">
@@ -51,7 +50,7 @@
 
 
      <div class="fixed-action-btn">
-      <button type="button" class="btn-floating btn-large red darken-4">
+      <button type="button" class="btn-floating btn-large red darken-4" (click)="newMessage()">
         <i class="large material-icons">send</i>
       </button>
     </div>

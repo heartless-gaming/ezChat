@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
-import {Message} from './message';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Message } from './message';
+import { User } from './user';
 import { MessagesService } from './messages.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers:[MessagesService]
+  providers: [MessagesService, UserService]
 })
 
 export class AppComponent implements OnInit, OnDestroy{
@@ -18,12 +20,12 @@ export class AppComponent implements OnInit, OnDestroy{
 
   connection;
 
-  constructor(private messagesService:MessagesService) {}
+  constructor(private messagesService:MessagesService, private userService:UserService) {}
 
   newMessage(){
     let messageToSend : Message = {author:this.userName, text:this.currentMessage};
     this.messagesService.sendMessage(messageToSend);
-    /*Clear*/
+    // Clear
     this.currentMessage = "";
   }
 
@@ -33,10 +35,9 @@ export class AppComponent implements OnInit, OnDestroy{
     this.connection = this.messagesService.getMessages().subscribe(message => {
       this.allMessages.push(message);
     });
-    this.connection = this.messagesService.getUsers().subscribe(user => {
+    this.connection = this.userService.getUsers().subscribe(user => {
       this.onlineUsers.push(user);
     });
-
   }
 
   ngOnDestroy() {
@@ -49,11 +50,12 @@ export class AppComponent implements OnInit, OnDestroy{
                         messagesHistory => this.allMessages = messagesHistory,
                         error =>  this.errorMessage = <any>error);
   }
+
   getOnlineUsers() {
-  this.messagesService.getOnlineUsers()
+  this.userService.getOnlineUsers()
                       .then(
                         users => {this.onlineUsers = users;
-                                  this.userName += this.onlineUsers.length;
+                                  this.userName += this.onlineUsers.length + 1;
                         },
                         error =>  this.errorMessage = <any>error);
   }

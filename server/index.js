@@ -1,7 +1,6 @@
 // Require some deps
 let path = require('path') // nodeJS path resolution module https://nodejs.org/api/path.html
 let _ = require('lodash') // helpers around javascript API
-
 // Back office / node Server Configuration variables
 let ezchatConfig = {
   serverPort: 3000,
@@ -62,17 +61,16 @@ let messages = [
 ] // Test Mesage sample
 
 // Pull the last message if the Message Array reach the maximum number of message configured
-let updateMessageHistory = function (author, text) {
+let updateMessageHistory = function (author, text, img, youtube) {
   let msglength = messages.length
   if (msglength >= ezchatConfig.massageHistory) {
     messages.shift() // Delete the oldest message
-    messages.push({author: author, text: text})
     console.log('Massage limit as been reached. Pulling first message.')
   } else {
-    messages.push({author: author, text: text})
     console.log('new message from :' + author)
     console.log('Text :' + text)
   }
+  messages.push({author: author, text: text, img: img, youtube: youtube})
 }
 
 let addNewUser = function (author, socketId) {
@@ -93,14 +91,37 @@ io.on('connect', function (socket) {
     let text = data.text
 
     addNewUser(author, socket.id)
-    updateMessageHistory(author, text)
+
 
     console.log('socket id of new message : ' + socket.id)
+    /*Image matching*/
+    var imageLink = null;
+    var imageRegex = new RegExp('(https?:\/\/.*\.(?:png|jpg|gif))');
+    var img  = text.match(imageRegex);
+    if (img)
+        imageLink = img[1];
 
-    // we tell all clients to execute 'new message'
+    /*Image matching*/
+    var youtubeLink = null;
+    var youtubeRegex = new RegExp(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i);
+    var youtubeMatch  = text.match(youtubeRegex);
+    if (youtubeMatch)
+        youtubeLink = "//www.youtube.com/embed/"+youtubeMatch[1]+"?rel=0";
+
+    updateMessageHistory(author, text, imageLink, youtubeLink)
+    // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
-      author: author,
-      text: text
+      author : author,
+      text: text,
+      img : imageLink,
+      youtube : youtubeLink
+    })
+    // we tell all other clients to execute 'new message'
+    socket.emit('new message', {
+      author : author,
+      text : text,
+      img : imageLink,
+      youtube : youtubeLink
     })
   })
 

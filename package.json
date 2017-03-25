@@ -13,6 +13,7 @@
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
     "@types/socket.io-client": "^1.4.29",
+    "angular-linky": "^1.2.2",
     "core-js": "^2.4.1",
     "express": "^4.14.1",
     "rxjs": "^5.1.0",

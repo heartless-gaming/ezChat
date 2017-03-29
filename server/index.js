@@ -88,7 +88,7 @@ let onChangeUsername = function (newUsername, socketId) {
   users[socketIdIndex] = newUsername
 }
 // Pull last message if the Message Array reach the maximum number of message
-let updateMessageHistory = function (author, text, img, youtube) {
+let updateMesœsageHistory = function (author, text, img, youtube) {
   if (messages.length >= ezchatConfig.massageHistory) {
     messages.shift() // Delete the oldest message
   }
@@ -157,17 +157,17 @@ io.on('connect', function (socket) {
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function (reason) {
-    // Remove user from user array by finding is socket.id
+    // Remove user by finding is socket.id
     let socketIdIndex = usersSocketId.indexOf(socket.id)
+    let username = users[socketIdIndex]
+
     if (socketIdIndex >= 0) {
       _.pullAt(usersSocketId, socketIdIndex)
       _.pullAt(users, socketIdIndex)
       userCount--
+
+      // echo globally that this client has left
+      socket.broadcast.emit('user left', username)
     }
-    // echo globally that this client has left
-    socket.broadcast.emit('user left', {
-      author: socket.author,
-      userCount: userCount
-    })
   })
 })

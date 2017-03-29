@@ -50,23 +50,20 @@ socket.emit('add user', username);
 
 ## User Joined
 
-The server broadcast a *user joined* event upon receiving an [add user](#add-user) event. Returns an object containing the username of the user that has just join in and the number of people in the chat has a second argument.
+The server broadcast a *user joined* event upon receiving an [add user](#add-user) event. Returns a string containing the username of the user that has just join in.
 
 **Client / Front**
 ```js
 // Listen to client joining the chat
 socket.on('user joined', function (data) {
-  // data = {username: Skullmasher, numUsers: 6}
+  // data = 'Skullmasher'
 });
 ```
 
 **Server / Back**
 ```js
 // Tell all clients that a person has connected
-socket.broadcast.emit('user joined', {
-  username: socket.username,
-  numUsers: numUsers
-})
+socket.broadcast.emit('user joined', 'skullmasher')
 ```
 
 ## User Left

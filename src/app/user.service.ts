@@ -14,7 +14,9 @@ export class UserService {
     return Promise.reject(error.message || error);
   }
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+
+  }
 
   getOnlineUsers(): Promise<string[]>{
   return this.http.get(this.url+'/users')
@@ -22,7 +24,7 @@ export class UserService {
             .then(response => response.json().users as string[])
             .catch(this.handleError);
   }
-
+  // Returns the users who joined eZchat
   getUsers() {
     let observable = new Observable<string>(observer => {
       this.socket = io(this.url);

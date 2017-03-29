@@ -1,4 +1,13 @@
 # ezChat
+<p align="center">
+    <img src="preview.png">
+</p>  
+
+![license](https://img.shields.io/github/license/mashape/apistatus.svg)
+![work in progress](https://img.shields.io/badge/status-work%20in%20progress-yellow.svg)
+![node](https://img.shields.io/badge/node-7.6.0-brightgreen.svg)
+![angular-cli](https://img.shields.io/badge/angular--cli-v1.0.0--rc.2-brightgreen.svg)  
+
 Where the Heartless talk shit, a simple chat for the heatless gamming community.
 
 <p align="center">
@@ -28,23 +37,23 @@ Start coding with a simple `npm start` from there on out.
 **Back :** start the *server/index.js* file under a forever process. (Details will be added soon)
 
 ## Front
-angular cli : https://github.com/angular/angular-cli  
-angular material2  (ez component / easy theming) :  https://github.com/angular/material2  
+angular cli for project initialisation : https://github.com/angular/angular-cli  
+Materializecss as css framework
 Fonctionnalities :
 - see who is connected
 - see new messages
   - emoji interpretation
-  - gif interpretation
-  - youtube interpretation
-- write a message
+  - gif interpretation : done
+  - youtube interpretation : done
+- write a message : done
   - emoji selector
 - notification in browser tab
 - sound notifiaction ? (maybe borring will see)
 
 ### TODOs
 - init project : done
-- maquette with real component
-- integration API
+- maquette with real component : done
+- integration API : done
 
 ## Back :skull:
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)

@@ -88,7 +88,7 @@ let onChangeUsername = function (newUsername, socketId) {
   users[socketIdIndex] = newUsername
 }
 // Pull last message if the Message Array reach the maximum number of message
-let updateMesœsageHistory = function (author, text, img, youtube) {
+let updateMessageHistory = function (author, text, img, youtube) {
   if (messages.length >= ezchatConfig.massageHistory) {
     messages.shift() // Delete the oldest message
   }

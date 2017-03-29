@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: Http) {
     this.socket = io(this.url);
   }
-
+  // Get the list of users
   getOnlineUsers(): Promise<string[]>{
   return this.http.get(this.url+'/users')
             .toPromise()
@@ -40,5 +40,6 @@ export class UserService {
   // talk to the server to get a username that is not already used
   getAvailableUsername() {
     this.socket.emit('add user')
+    // this.socket.on('user joined')
   }
 }

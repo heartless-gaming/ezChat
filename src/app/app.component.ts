@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy{
       this.allMessages.push(message);
     });
     this.connection = this.userService.getUsers().subscribe(user => {
+      console.log(user)
       this.onlineUsers.push(user);
     });
   }

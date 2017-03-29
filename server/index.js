@@ -1,7 +1,12 @@
-// Require some deps
+/*
+ * Require some deps
+ */
 let path = require('path') // nodeJS path resolution module https://nodejs.org/api/path.html
 let _ = require('lodash') // helpers around javascript API
-// Back office / node Server Configuration variables
+
+/*
+ * eZchat Server Configuration variables
+ */
 let ezchatConfig = {
   serverPort: 3000,
   defaultUsername: 'Anonymous', // Users will have that username by default
@@ -42,7 +47,7 @@ app.get('/messages', function (req, res) {
 })
 
 /*
- * Chatroom handling
+ * Variables & Functions for chatroom handling
  */
 let userCount = 0
 let users = []
@@ -59,17 +64,8 @@ let messages = [
   {author: 'Neo', text: 'Because I choose to.'},
   {author: 'Skullmasher', text: 'https://youtu.be/_f6MRkTLT9o'},
   {author: 'ADN', text: 'https://i.redd.it/evvrqz8448oy.jpg'}
-] // Test Mesage sample
-
-// Pull the last message if the Message Array reach the maximum number of message configured
-let updateMessageHistory = function (author, text, img, youtube) {
-  if (messages.length >= ezchatConfig.massageHistory) {
-    messages.shift() // Delete the oldest message
-  }
-
-  messages.push({author: author, text: text, img: img, youtube: youtube})
-}
-// Add a default user
+]
+// Add default user
 let addDefaultUser = function (socketId) {
   userCount++
 
@@ -79,33 +75,40 @@ let addDefaultUser = function (socketId) {
     username = ezchatConfig.defaultUsername + (userCount + 1)
   }
 
-  console.log('username : ' + username)
-  console.log('userCount : ' + userCount)
-
   users.push(username)
   usersSocketId.push(socketId)
 
   return username
 }
 
-let changeUsername = function (oldUsername, socketId) {
+let onChangeUsername = function (newUsername, socketId) {
   // Find index of socketId and modify the user with that index
+  let socketIdIndex = usersSocketId.indexOf(socketId)
+
+  users[socketIdIndex] = newUsername
+}
+// Pull last message if the Message Array reach the maximum number of message
+let updateMessageHistory = function (author, text, img, youtube) {
+  if (messages.length >= ezchatConfig.massageHistory) {
+    messages.shift() // Delete the oldest message
+  }
+
+  messages.push({author: author, text: text, img: img, youtube: youtube})
 }
 
+/*
+ * Socket event manadgement
+ */
 io.on('connect', function (socket) {
   socket.on('add user', function () {
-    // Add a default user
     let username = addDefaultUser(socket.id)
-
-    // echo globally (all clients) that a person has connected as a defaultuser
-    socket.broadcast.emit('user joined', {
-      username: username
-    })
+    // echo globally that a person has connected as a defaultuser
+    socket.broadcast.emit('user joined', username)
   })
 
-  socket.on('change username', function (oldUsername) {
-    // Add a default user
-    changeUsername(oldUsername, socket.id)
+  socket.on('change username', function (newUsername) {
+    onChangeUsername(newUsername, socket.id) // update the user
+    socket.broadcast.emit('change username') // Asking client to refresh onlineUsers
   })
 
   // when a client emits 'new message', this listens and executes
@@ -131,13 +134,6 @@ io.on('connect', function (socket) {
     updateMessageHistory(author, text, imageLink, youtubeLink)
     // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
-      author: author,
-      text: text,
-      img: imageLink,
-      youtube: youtubeLink
-    })
-    // we tell all other clients to execute 'new message' <-- wat why ??
-    socket.emit('new message', {
       author: author,
       text: text,
       img: imageLink,
@@ -173,7 +169,5 @@ io.on('connect', function (socket) {
       author: socket.author,
       userCount: userCount
     })
-
-    console.log('A guy just disconnected : ' + socket.id + '(' + reason + ')')
   })
 })

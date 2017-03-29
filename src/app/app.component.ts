@@ -31,11 +31,16 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.getMessagesHistory();
+    // talk to the server to get a username that is not already used
+    this.userService.getAvailableUsername();
     this.userService.getOnlineUsers()
-      .then(
-          data => console.log(data)
-      );
+                    .then(
+                      users => {
+                        this.onlineUsers = users;
+                        this.userName += this.onlineUsers.length + 1;
+                      },
+                      error =>  this.errorMessage = <any>error);
+    this.getMessagesHistory(); // Load the previous message from the server.
     this.connection = this.messagesService.getMessages().subscribe(message => {
       console.log(message);
       this.allMessages.push(message);
@@ -50,13 +55,6 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   getMessagesHistory() {
-      this.userService.getOnlineUsers()
-                      .then(
-                        users => {
-                          this.onlineUsers = users;
-                          this.userName += this.onlineUsers.length + 1;
-                        },
-                        error =>  this.errorMessage = <any>error);
     this.messagesService.getMessagesHistory()
                         .then(
                           messagesHistory => this.allMessages = messagesHistory,

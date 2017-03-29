@@ -15,7 +15,7 @@ export class UserService {
   }
 
   constructor(private http: Http) {
-
+    this.socket = io(this.url);
   }
 
   getOnlineUsers(): Promise<string[]>{
@@ -24,11 +24,9 @@ export class UserService {
             .then(response => response.json().users as string[])
             .catch(this.handleError);
   }
-  // Returns the users who joined eZchat
+  // Listen to the users who joined eZchat
   getUsers() {
     let observable = new Observable<string>(observer => {
-      this.socket = io(this.url);
-
       this.socket.on('user joined', (data: string) => {
         observer.next(data);
       });
@@ -38,5 +36,9 @@ export class UserService {
       };
     })
     return observable;
+  }
+  // talk to the server to get a username that is not already used
+  getAvailableUsername() {
+    this.socket.emit('add user')
   }
 }

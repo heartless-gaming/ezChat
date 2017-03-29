@@ -4,6 +4,7 @@ let _ = require('lodash') // helpers around javascript API
 // Back office / node Server Configuration variables
 let ezchatConfig = {
   serverPort: 3000,
+  defaultUsername: 'Anonymous', // Users will have that username by default
   massageHistory: 100, // Number of old message to show on user connection
   path: {
     root: path.join(__dirname, '..'),
@@ -57,57 +58,76 @@ let messages = [
   {author: 'Smith', text: 'Why, Mr. Anderson? Why, why? Why do you do it? Why, why get up? Why keep fighting? Do you believe you\'re fighting... for something? For more than your survival? Can you tell me what it is? Do you even know? Is it freedom? Or truth? Perhaps peace? Could it be for love? Illusions, Mr. Anderson. Vagaries of perception. Temporary constructs of a feeble human intellect trying desperately to justify an existence that is without meaning or purpose. And all of them as artificial as the Matrix itself, although... Only a human mind could invent something as insipid as love. You must be able to see it, Mr. Anderson. You must know it by now. You can\'t win. It\'s pointless to keep fighting. Why, Mr. Anderson? Why? Why do you persist?'},
   {author: 'Neo', text: 'Because I choose to.'},
   {author: 'Skullmasher', text: 'https://youtu.be/_f6MRkTLT9o'},
-  {author: 'ADN', text: 'https://i.imgur.com/JavMJGH.mp4'}
+  {author: 'ADN', text: 'https://i.redd.it/evvrqz8448oy.jpg'}
 ] // Test Mesage sample
 
 // Pull the last message if the Message Array reach the maximum number of message configured
 let updateMessageHistory = function (author, text, img, youtube) {
-  let msglength = messages.length
-  if (msglength >= ezchatConfig.massageHistory) {
+  if (messages.length >= ezchatConfig.massageHistory) {
     messages.shift() // Delete the oldest message
-    console.log('Massage limit as been reached. Pulling first message.')
-  } else {
-    console.log('new message from :' + author)
-    console.log('Text :' + text)
   }
+
   messages.push({author: author, text: text, img: img, youtube: youtube})
 }
+// Add a default user
+let addDefaultUser = function (socketId) {
+  userCount++
 
-let addNewUser = function (author, socketId) {
-  // If the user does not exist add him to the users array
-  if (users.indexOf(author) === -1) {
-    users.push(author)
-    usersSocketId.push(socketId)
-    userCount++
-    console.log(author + ' Added to userlist')
+  let username = ezchatConfig.defaultUsername + userCount
+  // while we find user with the same name
+  while (users.indexOf(username) !== -1) {
+    username = ezchatConfig.defaultUsername + (userCount + 1)
   }
+
+  console.log('username : ' + username)
+  console.log('userCount : ' + userCount)
+
+  users.push(username)
+  usersSocketId.push(socketId)
+
+  return username
+}
+
+let changeUsername = function (oldUsername, socketId) {
+  // Find index of socketId and modify the user with that index
 }
 
 io.on('connect', function (socket) {
-  console.log('A guy just connected : ' + socket.id)
+  socket.on('add user', function () {
+    // Add a default user
+    let username = addDefaultUser(socket.id)
+
+    // echo globally (all clients) that a person has connected as a defaultuser
+    socket.broadcast.emit('user joined', {
+      username: username
+    })
+  })
+
+  socket.on('change username', function (oldUsername) {
+    // Add a default user
+    changeUsername(oldUsername, socket.id)
+  })
+
   // when a client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     let author = data.author
     let text = data.text
 
-    addNewUser(author, socket.id)
-
-    console.log('socket id of new message : ' + socket.id)
-
     // Image matching
-    var imageLink = null
-    var imageRegex = new RegExp('(https?://.*.(?:png|jpg|gif))')
-    var img = text.match(imageRegex)
+    let imageLink = null
+    let imageRegex = new RegExp('(https?://.*.(?:png|jpg|gif))')
+    let img = text.match(imageRegex)
 
     if (img) imageLink = img[1]
 
     // Youtube matching
-    var youtubeLink = null
-    var youtubeRegex = new RegExp(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/ ]{11})/i)
-    var youtubeMatch = text.match(youtubeRegex)
+    let youtubeLink = null
+    let youtubeRegex = new RegExp(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/ ]{11})/i)
+    let youtubeMatch = text.match(youtubeRegex)
 
     if (youtubeMatch) youtubeLink = '//www.youtube.com/embed/' + youtubeMatch[1] + '?rel=0'
 
+    // update Message history
     updateMessageHistory(author, text, imageLink, youtubeLink)
     // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
@@ -116,26 +136,12 @@ io.on('connect', function (socket) {
       img: imageLink,
       youtube: youtubeLink
     })
-    // we tell all other clients to execute 'new message'
+    // we tell all other clients to execute 'new message' <-- wat why ??
     socket.emit('new message', {
       author: author,
       text: text,
       img: imageLink,
       youtube: youtubeLink
-    })
-  })
-
-  // when the client emits 'add user', this listens and executes
-  socket.on('add user', function (author) {
-    // we store the author in the socket session for this client
-    socket.emit('login', {
-      userCount: userCount
-    })
-
-    // echo globally (all clients) that a person has connected
-    socket.broadcast.emit('user joined', {
-      author: socket.author,
-      userCount: userCount
     })
   })
 

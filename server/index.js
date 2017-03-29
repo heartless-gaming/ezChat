@@ -92,36 +92,36 @@ io.on('connect', function (socket) {
 
     addNewUser(author, socket.id)
 
-
     console.log('socket id of new message : ' + socket.id)
-    /*Image matching*/
-    var imageLink = null;
-    var imageRegex = new RegExp('(https?:\/\/.*\.(?:png|jpg|gif))');
-    var img  = text.match(imageRegex);
-    if (img)
-        imageLink = img[1];
 
-    /*Image matching*/
-    var youtubeLink = null;
-    var youtubeRegex = new RegExp(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i);
-    var youtubeMatch  = text.match(youtubeRegex);
-    if (youtubeMatch)
-        youtubeLink = "//www.youtube.com/embed/"+youtubeMatch[1]+"?rel=0";
+    // Image matching
+    var imageLink = null
+    var imageRegex = new RegExp('(https?://.*.(?:png|jpg|gif))')
+    var img = text.match(imageRegex)
+
+    if (img) imageLink = img[1]
+
+    // Youtube matching
+    var youtubeLink = null
+    var youtubeRegex = new RegExp(/(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/ ]{11})/i)
+    var youtubeMatch = text.match(youtubeRegex)
+
+    if (youtubeMatch) youtubeLink = '//www.youtube.com/embed/' + youtubeMatch[1] + '?rel=0'
 
     updateMessageHistory(author, text, imageLink, youtubeLink)
     // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
-      author : author,
+      author: author,
       text: text,
-      img : imageLink,
-      youtube : youtubeLink
+      img: imageLink,
+      youtube: youtubeLink
     })
     // we tell all other clients to execute 'new message'
     socket.emit('new message', {
-      author : author,
-      text : text,
-      img : imageLink,
-      youtube : youtubeLink
+      author: author,
+      text: text,
+      img: imageLink,
+      youtube: youtubeLink
     })
   })
 

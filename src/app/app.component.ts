@@ -23,8 +23,8 @@ export class AppComponent implements OnInit, OnDestroy{
 
   constructor(private messagesService:MessagesService, private userService:UserService) {}
 
-  newMessage(){
-    let messageToSend : Message = {author:this.userName, text:this.currentMessage};
+  newMessage() {
+    let messageToSend : Message = {author:this.userName, text:this.currentMessage, img: null, youtube: null};
     this.messagesService.sendMessage(messageToSend);
     // Clear
     this.currentMessage = "";
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.getMessagesHistory();
-    this.getOnlineUsers();
+    this.userService.getOnlineUsers();
     this.connection = this.messagesService.getMessages().subscribe(message => {
       console.log(message);
       this.allMessages.push(message);
@@ -47,18 +47,9 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   getMessagesHistory() {
-  this.messagesService.getMessagesHistory()
-                      .then(
-                        messagesHistory => this.allMessages = messagesHistory,
-                        error =>  this.errorMessage = <any>error);
-  }
-
-  getOnlineUsers() {
-  this.userService.getOnlineUsers()
-                      .then(
-                        users => {this.onlineUsers = users;
-                                  this.userName += this.onlineUsers.length + 1;
-                        },
-                        error =>  this.errorMessage = <any>error);
+    this.messagesService.getMessagesHistory()
+                        .then(
+                          messagesHistory => this.allMessages = messagesHistory,
+                          error =>  this.errorMessage = <any>error);
   }
 }

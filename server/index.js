@@ -139,6 +139,12 @@ io.on('connect', function (socket) {
       img: imageLink,
       youtube: youtubeLink
     })
+    socket.emit('new message', {
+      author: author,
+      text: text,
+      img: imageLink,
+      youtube: youtubeLink
+    })
   })
 
   // when the client emits 'typing', we broadcast it to others

@@ -26,8 +26,8 @@ export class UserService {
   }
   // Listen to the users who joined eZchat
   getUsers() {
-    let observable = new Observable<string>(observer => {
-      this.socket.on('user joined', (data: string) => {
+    let observable = new Observable<string[]>(observer => {
+      this.socket.on('update users', (data: string[]) => {
         observer.next(data);
       });
 
@@ -40,6 +40,11 @@ export class UserService {
   // talk to the server to get a username that is not already used
   getAvailableUsername() {
     this.socket.emit('add user')
+    // this.socket.on('user joined')
+  }
+
+  changeUsername(username: string) {
+    this.socket.emit('change username',username);
     // this.socket.on('user joined')
   }
 }

@@ -45,9 +45,8 @@ export class AppComponent implements OnInit, OnDestroy{
       console.log(message);
       this.allMessages.push(message);
     });
-    this.connection = this.userService.getUsers().subscribe(user => {
-      console.log(user)
-      this.onlineUsers.push(user);
+    this.connection = this.userService.getUsers().subscribe(users => {
+      this.onlineUsers = users;
     });
   }
 
@@ -60,5 +59,9 @@ export class AppComponent implements OnInit, OnDestroy{
                         .then(
                           messagesHistory => this.allMessages = messagesHistory,
                           error =>  this.errorMessage = <any>error);
+  }
+
+  changeUsername(){
+    this.userService.changeUsername(this.userName);
   }
 }

@@ -3,7 +3,7 @@
     <div class="background">
       <img class="header-img" src="assets/img/computer.jpg">
     </div>
-    <span class="white-text name"> <input type="text" [(ngModel)]="userName"></span>
+    <span class="white-text name"> <input type="text" [(ngModel)]="userName" (keyup)="changeUsername()"></span>
     <a href="#!email"><span class="white-text email"></span></a>
   </div></li>
   <li><a class="grey-text text-lighten-1" href="#!">{{onlineUsers.length}} - Online user<i class="material-icons grey-text text-lighten-1">perm_identity</i></a></li>

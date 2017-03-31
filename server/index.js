@@ -103,12 +103,14 @@ io.on('connect', function (socket) {
   socket.on('add user', function () {
     let username = addDefaultUser(socket.id)
     // echo globally that a person has connected as a defaultuser
-    socket.broadcast.emit('user joined', username)
+    socket.broadcast.emit('update users', users)
+    socket.emit('update users', users)
   })
 
   socket.on('change username', function (newUsername) {
     onChangeUsername(newUsername, socket.id) // update the user
-    socket.broadcast.emit('change username') // Asking client to refresh onlineUsers
+    socket.broadcast.emit('update users', users) // Asking client to refresh onlineUsers
+    socket.emit('update users', users) // Asking client to refresh onlineUsers
   })
 
   // when a client emits 'new message', this listens and executes
@@ -134,6 +136,12 @@ io.on('connect', function (socket) {
     updateMessageHistory(author, text, imageLink, youtubeLink)
     // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
+      author: author,
+      text: text,
+      img: imageLink,
+      youtube: youtubeLink
+    })
+    socket.emit('new message', {
       author: author,
       text: text,
       img: imageLink,
@@ -167,7 +175,8 @@ io.on('connect', function (socket) {
       userCount--
 
       // echo globally that this client has left
-      socket.broadcast.emit('user left', username)
+      socket.broadcast.emit('update users', users)
+      socket.emit('update users', users)
     }
   })
 })

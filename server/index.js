@@ -167,7 +167,6 @@ io.on('connect', function (socket) {
   socket.on('disconnect', function (reason) {
     // Remove user by finding is socket.id
     let socketIdIndex = usersSocketId.indexOf(socket.id)
-    let username = users[socketIdIndex]
 
     if (socketIdIndex >= 0) {
       _.pullAt(usersSocketId, socketIdIndex)

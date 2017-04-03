@@ -35,7 +35,6 @@ main {
 }
 .chat-nav{
   display: flex;
-  height: 8vh;
 }
 .message-panel{
   margin: 0.5rem 0 0.5rem 0;

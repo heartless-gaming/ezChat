@@ -10,7 +10,8 @@ body {
 .app-groot {
   display: flex;
   flex-direction: column;
-  overflow: hidden; }
+  overflow: hidden;
+  height: 100vh; }
 
 header, main, footer {
   padding-left: 300px; }
@@ -20,7 +21,7 @@ header, main, footer {
     padding-left: 0; } }
 
 main {
-  flex: 1 0 auto; }
+  flex: 1; }
 
 /*
  * Loader : sass partial located in scss/_loader.scss

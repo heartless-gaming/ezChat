@@ -16,6 +16,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  height: 100vh;
 }
 
 header, main, footer {
@@ -29,7 +30,9 @@ header, main, footer {
 }
 
 main {
-  flex: 1 0 auto;
+  // Will take as much space possible pushing header and footer, see stycky footer solve by flexbox
+  // https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+  flex: 1;
 }
 
 /*

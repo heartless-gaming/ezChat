@@ -3,13 +3,14 @@ import { Message } from './message';
 import { User } from './user';
 import { MessagesService } from './messages.service';
 import { UserService } from './user.service';
+import { EmojiService } from './emoji/emoji.service';
 import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MessagesService, UserService]
+  providers: [MessagesService, UserService,EmojiService]
 })
 
 export class AppComponent implements OnInit, OnDestroy{
@@ -19,9 +20,10 @@ export class AppComponent implements OnInit, OnDestroy{
   private onlineUsers : string[]=[];
   private errorMessage: string;
 
+  private emojis : string[] = [];
   connection;
 
-  constructor(private messagesService:MessagesService, private userService:UserService) {}
+  constructor(private messagesService:MessagesService, private userService:UserService,private emojiService:EmojiService) {}
 
   newMessage() {
     let messageToSend : Message = {author:this.userName, text:this.currentMessage, img: null, youtube: null};
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     // talk to the server to get a username that is not already used
+    this.getEmojis();
     this.userService.getAvailableUsername();
     this.userService.getOnlineUsers()
                     .then(
@@ -63,5 +66,11 @@ export class AppComponent implements OnInit, OnDestroy{
 
   changeUsername(){
     this.userService.changeUsername(this.userName);
+  }
+  getEmojis(){
+      this.emojiService.getEmojis()
+                          .then(
+                            emojis => this.emojis = emojis,
+                            error =>  this.errorMessage = <any>error);
   }
 }

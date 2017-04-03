@@ -10,7 +10,7 @@ body {
   overflow: hidden;
   height: 100vh; }
 
-header, main, footer {
+main, footer {
   padding-left: 300px; }
 
 @media only screen and (max-width: 992px) {
@@ -114,8 +114,34 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 .icon-block .material-icons {
   font-size: inherit; }
 
-.chat-nav {
-  display: flex; }
+/*.chat-nav{
+  display: flex;
+  justify-content: space-between;
+  height: auto; // html nav element are hardcoded to 26px in material.css
+  background-color: transparent;
+}*/
+.burger-button {
+  position: absolute;
+  color: #fff; }
+
+@media only screen and (min-width: 993px) {
+  .burger-button {
+    display: none; } }
+
+.burger-icon {
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  font-size: 2.8rem;
+  text-shadow: 0px 0px 15px black; }
+
+.app-logo {
+  position: absolute;
+  color: #fff;
+  right: 20px;
+  font-size: 3rem;
+  text-shadow: 0px 0px 15px black; }
 
 .message-panel {
   margin: 0.5rem 0 0.5rem 0;

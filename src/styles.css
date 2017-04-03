@@ -21,7 +21,8 @@ header, main, footer {
     padding-left: 0; } }
 
 main {
-  flex: 1; }
+  flex: 1;
+  overflow-y: scroll; }
 
 /*
  * Loader : sass partial located in scss/_loader.scss
@@ -124,10 +125,6 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
   padding: 5px;
   border-radius: 5px;
   display: inline-block; }
-
-.chat-messages {
-  display: flex;
-  overflow-y: scroll; }
 
 .chat-box {
   background-color: white;

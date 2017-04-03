@@ -33,6 +33,7 @@ main {
   // Will take as much space possible pushing header and footer, see stycky footer solve by flexbox
   // https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
   flex: 1;
+  overflow-y: scroll;
 }
 
 /*
@@ -63,8 +64,7 @@ main {
 }
 
 .chat-messages{
-  display: flex;
-  overflow-y: scroll;
+  // There used to be something here
 }
 
 .chat-box{

@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: #212121;
+  overflow: hidden;
+}
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+@import 'scss/loader';
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+.chat-nav{
+  display: flex;
+}
+
+.message-panel{
+  margin: 0.5rem 0 0.5rem 0;
+  padding: 5px;
+  border-radius: 20px;
+  display:inline-block;
+}
+
+.chat-messages{
+  display: flex;
+  height: 76vh;
+  overflow-y: scroll;
+}
+
+.chat-box{
+  background-color: white;
+  display: flex;
+  height: 16vh;
+}
+
+.header-img{
+  width:100%;
+}
+
+.row-messages{
+      width: 100%;
+}
+
+.row-chat-box{
+  width: 100%;
+}
+
+.message-author{
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.brand-logo{
+    margin-right: 25px;
+}

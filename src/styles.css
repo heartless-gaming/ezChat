@@ -1,17 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-/* Custom Stylesheet */
 /**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
+ * Variables
  */
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background: #212121;
-  overflow: hidden; }
+  overflow: hidden;
+  background: #212121; }
 
 header, main, footer {
   padding-left: 300px; }
@@ -116,7 +111,7 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 .message-panel {
   margin: 0.5rem 0 0.5rem 0;
   padding: 5px;
-  border-radius: 20px;
+  border-radius: 5px;
   display: inline-block; }
 
 .chat-messages {

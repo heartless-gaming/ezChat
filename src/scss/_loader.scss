@@ -5,14 +5,14 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 
 .loader {
   animation: spin 1.5s linear alternate infinite;
-  background: #B71C1C;
+  background: $loaderred;
   border-radius: 50%;
   height: 120px;
   width: 120px;
 }
 
 .loader:before {
-  background: #B71C1C;
+  background: $loaderred;
   border-radius: 50%;
   content: '';
   display: block;
@@ -22,20 +22,20 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 }
 
 .loader:after {
-  background: #212121;
+  background: $darkgrey;
   border-radius: 50%;
-  box-shadow: 0em -2.60em #212121,
-    2.25em -4.02em #212121,
-    2.25em -1.25em #212121,
-    4.60em 0em #212121,
-    2.25em 1.25em #212121,
-    2.25em 4.02em #212121,
-    0em 2.60em #212121,
-    -2.25em 4.02em #212121,
-    -2.25em 1.25em #212121,
-    -4.60em 0em #212121,
-    -2.25em -1.25em #212121,
-    -2.25em -4.02em #212121;
+  box-shadow: 0em -2.60em $darkgrey,
+    2.25em -4.02em $darkgrey,
+    2.25em -1.25em $darkgrey,
+    4.60em 0em $darkgrey,
+    2.25em 1.25em $darkgrey,
+    2.25em 4.02em $darkgrey,
+    0em 2.60em $darkgrey,
+    -2.25em 4.02em $darkgrey,
+    -2.25em 1.25em $darkgrey,
+    -4.60em 0em $darkgrey,
+    -2.25em -1.25em $darkgrey,
+    -2.25em -4.02em $darkgrey;
   content: '';
   display: block;
   height: 2em;
@@ -44,7 +44,7 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 
 .inner {
   animation: load 1.5s linear alternate infinite;
-  border: solid 1px #B71C1C;
+  border: solid 1px $loaderred;
   border-radius: 50%;
   height: 1.75em;
   width: 1.75em;
@@ -62,68 +62,68 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 
 @keyframes load {
   0% {
-    box-shadow: 0em -2.60em #212121,
-      2.25em -1.25em #212121,
-      2.25em 1.25em #212121,
-      0em 2.60em #212121,
-      -2.25em 1.25em #212121,
-      -2.25em -1.25em #212121;
+    box-shadow: 0em -2.60em $darkgrey,
+      2.25em -1.25em $darkgrey,
+      2.25em 1.25em $darkgrey,
+      0em 2.60em $darkgrey,
+      -2.25em 1.25em $darkgrey,
+      -2.25em -1.25em $darkgrey;
   }
   15% {
-    box-shadow: 0em -2.60em #212121,
-      2.25em -1.25em #212121,
-      2.25em 1.25em #212121,
-      0em 2.60em #212121,
-      -2.25em 1.25em #212121,
-      -2.25em -1.25em #B71C1C;
+    box-shadow: 0em -2.60em $darkgrey,
+      2.25em -1.25em $darkgrey,
+      2.25em 1.25em $darkgrey,
+      0em 2.60em $darkgrey,
+      -2.25em 1.25em $darkgrey,
+      -2.25em -1.25em $loaderred;
   }
   30% {
-    box-shadow: 0em -2.60em #212121,
-      2.25em -1.25em #212121,
-      2.25em 1.25em #212121,
-      0em 2.60em #212121,
-      -2.25em 1.25em #B71C1C,
-      -2.25em -1.25em #B71C1C;
+    box-shadow: 0em -2.60em $darkgrey,
+      2.25em -1.25em $darkgrey,
+      2.25em 1.25em $darkgrey,
+      0em 2.60em $darkgrey,
+      -2.25em 1.25em $loaderred,
+      -2.25em -1.25em $loaderred;
   }
   45% {
-    box-shadow: 0em -2.60em #212121,
-      2.25em -1.25em #212121,
-      2.25em 1.25em #212121,
-      0em 2.60em #B71C1C,
-      -2.25em 1.25em #B71C1C,
-      -2.25em -1.25em #B71C1C;
+    box-shadow: 0em -2.60em $darkgrey,
+      2.25em -1.25em $darkgrey,
+      2.25em 1.25em $darkgrey,
+      0em 2.60em $loaderred,
+      -2.25em 1.25em $loaderred,
+      -2.25em -1.25em $loaderred;
   }
   60% {
-    box-shadow: 0em -2.60em #212121,
-      2.25em -1.25em #212121,
-      2.25em 1.25em #B71C1C,
-      0em 2.60em #B71C1C,
-      -2.25em 1.25em #B71C1C,
-      -2.25em -1.25em #B71C1C;
+    box-shadow: 0em -2.60em $darkgrey,
+      2.25em -1.25em $darkgrey,
+      2.25em 1.25em $loaderred,
+      0em 2.60em $loaderred,
+      -2.25em 1.25em $loaderred,
+      -2.25em -1.25em $loaderred;
   }
   75% {
-    box-shadow: 0em -2.60em #212121,
-      2.25em -1.25em #B71C1C,
-      2.25em 1.25em #B71C1C,
-      0em 2.60em #B71C1C,
-      -2.25em 1.25em #B71C1C,
-      -2.25em -1.25em #B71C1C;
+    box-shadow: 0em -2.60em $darkgrey,
+      2.25em -1.25em $loaderred,
+      2.25em 1.25em $loaderred,
+      0em 2.60em $loaderred,
+      -2.25em 1.25em $loaderred,
+      -2.25em -1.25em $loaderred;
   }
   90% {
-    box-shadow: 0em -2.60em #B71C1C,
-      2.25em -1.25em #B71C1C,
-      2.25em 1.25em #B71C1C,
-      0em 2.60em #B71C1C,
-      -2.25em 1.25em #B71C1C,
-      -2.25em -1.25em #B71C1C;
+    box-shadow: 0em -2.60em $loaderred,
+      2.25em -1.25em $loaderred,
+      2.25em 1.25em $loaderred,
+      0em 2.60em $loaderred,
+      -2.25em 1.25em $loaderred,
+      -2.25em -1.25em $loaderred;
   }
   100% {
-    box-shadow: 0em -2.60em #B71C1C,
-      2.25em -1.25em #B71C1C,
-      2.25em 1.25em #B71C1C,
-      0em 2.60em #B71C1C,
-      -2.25em 1.25em #B71C1C,
-      -2.25em -1.25em #B71C1C;
+    box-shadow: 0em -2.60em $loaderred,
+      2.25em -1.25em $loaderred,
+      2.25em 1.25em $loaderred,
+      0em 2.60em $loaderred,
+      -2.25em 1.25em $loaderred,
+      -2.25em -1.25em $loaderred;
   }
 }
 

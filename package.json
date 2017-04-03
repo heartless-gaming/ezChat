@@ -14,9 +14,9 @@
     "@angular/router": "^3.4.0",
     "@types/socket.io-client": "^1.4.29",
     "angular-linky": "^1.2.2",
+    "angular2-emojify": "^0.1.0",
     "core-js": "^2.4.1",
     "express": "^4.14.1",
-    "ng2-emoji": "^0.1.8",
     "rxjs": "^5.1.0",
     "socket.io": "^1.7.3",
     "zone.js": "^0.8.4"

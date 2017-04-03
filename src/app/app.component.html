@@ -49,7 +49,7 @@
     <div class="row row-chat-box">
       <form (ngSubmit)="newMessage()">
         <div class="input-field col s11">
-          <input id="textarea1" type="text" autocomplete="off" class="white-text" [ngModelOptions]="{standalone: true}" [(ngModel)]="currentMessage">
+          <input id="textarea1" type="text" autocomplete="off" class="white-text" [mention]="emojis" [ngModelOptions]="{standalone: true}" [(ngModel)]="currentMessage">
           <label for="textarea1">Type a message</label>
         </div>
          <div class="fixed-action-btn">

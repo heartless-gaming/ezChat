@@ -32,7 +32,7 @@
           <div class="row row-text">
             <span class="message-author grey-text text-lighten-1">{{message.author}}</span>
             :
-            <span class="white-text" [innerHTML]="message.text | linky">
+            <span class="white-text" [innerHTML]="message.text | linky | emojify">
             </span>
           </div>
           <div class="row row-text">

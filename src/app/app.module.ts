@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { LinkyModule } from 'angular-linky';
 import { SafePipe } from './safe.pipe';
 
+import { EmojifyModule } from 'angular2-emojify';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { SafePipe } from './safe.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    LinkyModule
+    LinkyModule,
+    EmojifyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -30,7 +30,7 @@
       <div class="col s12" *ngFor="let message of allMessages">
         <div class="card-panel message-panel grey darken-3">
           <div class="row row-text">
-            <span class="message-author grey-text text-lighten-1">{{message.author}}</span>
+            <span class="message-author grey-text text-lighten-1">{{message.author}} : </span>
             <span class="white-text" [innerHTML]="message.text | linky | emojify">
             </span>
           </div>
@@ -60,7 +60,5 @@
     </div>
   </div>
 </main>
-
 <footer>
-
 </footer>

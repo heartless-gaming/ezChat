@@ -1,16 +1,21 @@
 /**
  * Variables
  */
-
 $darkgrey: #212121;
 $loaderred: #B71C1C;
 
+/*
+ * Base
+ */
 body {
+  background: $darkgrey;
+}
+// Must be a flex for main to set is height automaticaly
+// We are GROOT. App root element with a superhero twist.
+.app-groot {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
   overflow: hidden;
-  background: $dargrey;
 }
 
 header, main, footer {
@@ -27,8 +32,14 @@ main {
   flex: 1 0 auto;
 }
 
+/*
+ * Loader : sass partial located in scss/_loader.scss
+ */
 @import 'scss/loader';
 
+/*
+ * Custom Css & Material Design style rewritting yay
+ */
 .icon-block {
   padding: 0 15px;
 }
@@ -50,14 +61,12 @@ main {
 
 .chat-messages{
   display: flex;
-  height: 76vh;
   overflow-y: scroll;
 }
 
 .chat-box{
   background-color: white;
   display: flex;
-  height: 16vh;
 }
 
 .header-img{
@@ -65,7 +74,7 @@ main {
 }
 
 .row-messages{
-      width: 100%;
+  width: 100%;
 }
 
 .row-chat-box{

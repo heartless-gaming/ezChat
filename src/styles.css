@@ -1,12 +1,16 @@
 /**
  * Variables
  */
+/*
+ * Base
+ */
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  overflow: hidden;
   background: #212121; }
+
+.app-groot {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; }
 
 header, main, footer {
   padding-left: 300px; }
@@ -18,6 +22,9 @@ header, main, footer {
 main {
   flex: 1 0 auto; }
 
+/*
+ * Loader : sass partial located in scss/_loader.scss
+ */
 /* Revolver Style CSS Loader
 Credits : David Fitas
 link : https://codepen.io/dfitzy/pen/XdaoWg
@@ -41,7 +48,7 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 .loader:after {
   background: #212121;
   border-radius: 50%;
-  box-shadow: 0em -2.60em #212121, 2.25em -4.02em #212121, 2.25em -1.25em #212121, 4.60em 0em #212121, 2.25em 1.25em #212121, 2.25em 4.02em #212121, 0em 2.60em #212121, -2.25em 4.02em #212121, -2.25em 1.25em #212121, -4.60em 0em #212121, -2.25em -1.25em #212121, -2.25em -4.02em #212121;
+  box-shadow: 0em -2.6em #212121, 2.25em -4.02em #212121, 2.25em -1.25em #212121, 4.6em 0em #212121, 2.25em 1.25em #212121, 2.25em 4.02em #212121, 0em 2.6em #212121, -2.25em 4.02em #212121, -2.25em 1.25em #212121, -4.6em 0em #212121, -2.25em -1.25em #212121, -2.25em -4.02em #212121;
   content: '';
   display: block;
   height: 2em;
@@ -65,21 +72,21 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 
 @keyframes load {
   0% {
-    box-shadow: 0em -2.60em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.60em #212121, -2.25em 1.25em #212121, -2.25em -1.25em #212121; }
+    box-shadow: 0em -2.6em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.6em #212121, -2.25em 1.25em #212121, -2.25em -1.25em #212121; }
   15% {
-    box-shadow: 0em -2.60em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.60em #212121, -2.25em 1.25em #212121, -2.25em -1.25em #B71C1C; }
+    box-shadow: 0em -2.6em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.6em #212121, -2.25em 1.25em #212121, -2.25em -1.25em #B71C1C; }
   30% {
-    box-shadow: 0em -2.60em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.60em #212121, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
+    box-shadow: 0em -2.6em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.6em #212121, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
   45% {
-    box-shadow: 0em -2.60em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.60em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
+    box-shadow: 0em -2.6em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #212121, 0em 2.6em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
   60% {
-    box-shadow: 0em -2.60em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #B71C1C, 0em 2.60em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
+    box-shadow: 0em -2.6em #212121, 2.25em -1.25em #212121, 2.25em 1.25em #B71C1C, 0em 2.6em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
   75% {
-    box-shadow: 0em -2.60em #212121, 2.25em -1.25em #B71C1C, 2.25em 1.25em #B71C1C, 0em 2.60em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
+    box-shadow: 0em -2.6em #212121, 2.25em -1.25em #B71C1C, 2.25em 1.25em #B71C1C, 0em 2.6em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
   90% {
-    box-shadow: 0em -2.60em #B71C1C, 2.25em -1.25em #B71C1C, 2.25em 1.25em #B71C1C, 0em 2.60em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
+    box-shadow: 0em -2.6em #B71C1C, 2.25em -1.25em #B71C1C, 2.25em 1.25em #B71C1C, 0em 2.6em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; }
   100% {
-    box-shadow: 0em -2.60em #B71C1C, 2.25em -1.25em #B71C1C, 2.25em 1.25em #B71C1C, 0em 2.60em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; } }
+    box-shadow: 0em -2.6em #B71C1C, 2.25em -1.25em #B71C1C, 2.25em 1.25em #B71C1C, 0em 2.6em #B71C1C, -2.25em 1.25em #B71C1C, -2.25em -1.25em #B71C1C; } }
 
 @keyframes spin {
   0% {
@@ -99,6 +106,9 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
   100% {
     transform: rotate(0deg); } }
 
+/*
+ * Custom Css & Material Design style rewritting yay
+ */
 .icon-block {
   padding: 0 15px; }
 
@@ -116,13 +126,11 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 
 .chat-messages {
   display: flex;
-  height: 76vh;
   overflow-y: scroll; }
 
 .chat-box {
   background-color: white;
-  display: flex;
-  height: 16vh; }
+  display: flex; }
 
 .header-img {
   width: 100%; }

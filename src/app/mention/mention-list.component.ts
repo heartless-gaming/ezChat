@@ -11,22 +11,11 @@ import { getCaretCoordinates } from './caret-coords';
  */
 @Component({
   selector: 'mention-list',
-  styles: [`
-      .scrollable-menu {
-        display: block;
-        height: auto;
-        max-height: 300px;
-        overflow: auto;
-      }
-    `,`
-      [hidden] {
-        display: none;
-      }
-    `],
+  styles: ['./mention-list.component.css'],
   template: `
     <ul class="dropdown-menu scrollable-menu" #list [hidden]="hidden">
         <li *ngFor="let item of items; let i = index" [class.active]="activeIndex==i">
-            <a class="text-primary" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">{{item}}</a>
+            <a class="text-primary" (mousedown)="activeIndex=i;itemClick.emit();$event.preventDefault()">{{item.slice(0, -1)}}   <span class="white-text" [innerHTML]="':'+item | emojify"></span></a>
         </li>
     </ul>
     `
@@ -88,7 +77,7 @@ export class MentionListComponent {
       }
     }
     // select the next item
-    this.activeIndex = Math.max(Math.min(this.activeIndex + 1, this.items.length - 1), 0);    
+    this.activeIndex = Math.max(Math.min(this.activeIndex + 1, this.items.length - 1), 0);
   }
 
   activatePreviousItem() {
@@ -107,7 +96,7 @@ export class MentionListComponent {
     // select the previous item
     this.activeIndex = Math.max(Math.min(this.activeIndex - 1, this.items.length - 1), 0);
   }
-  
+
   resetScroll() {
     this.list.nativeElement.scrollTop = 0;
   }

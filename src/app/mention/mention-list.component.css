@@ -1,0 +1,9 @@
+.scrollable-menu {
+      display: block;
+      height: auto;
+      max-height: 300px;
+      overflow: auto;
+}
+[hidden] {
+      display: none;
+}

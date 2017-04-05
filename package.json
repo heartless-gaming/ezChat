@@ -14,6 +14,7 @@
     "@angular/router": "^3.4.0",
     "@types/socket.io-client": "^1.4.29",
     "angular-linky": "^1.2.2",
+    "angular2-auto-scroll": "^1.0.12",
     "angular2-emojify": "^0.1.0",
     "core-js": "^2.4.1",
     "express": "^4.14.1",

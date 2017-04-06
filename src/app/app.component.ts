@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy{
       this.currentMessage = "";
     }
     else{
-      Materialize.toast("You can't send empty message or with an empty username", 4000)
+      Materialize.toast("You can't send empty message or you have an empty username", 4000)
     }
   }
 

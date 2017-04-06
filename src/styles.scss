@@ -133,11 +133,11 @@ main {
 }
 
 .dropdown-menu.scrollable-menu li > a{
-  color: chartreuse;
+  color: white;
 }
 
 .dropdown-menu.scrollable-menu li.active > a{
-  color: #B71C1C;
+  color: $loaderred;
 }
 
 .dropdown-menu.scrollable-menu li > a > span{

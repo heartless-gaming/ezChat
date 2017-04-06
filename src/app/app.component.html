@@ -23,7 +23,7 @@
   </header>
   <div id="chatscroll"class="chat-messages grey darken-4">
     <div class="row row-messages">
-      <div class="col s12" *ngFor="let message of allMessages">
+      <div class="col s12" *ngFor="let message of allMessages; let i = index">
         <div class="card-panel message-panel grey darken-3">
           <div class="row row-text">
             <span class="message-author grey-text text-lighten-1">{{message.author}} : </span>
@@ -37,6 +37,7 @@
             <iframe id="video" width="420" height="315" [src]="message.youtube | safe" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
+        <p *ngIf="i+1===allMessages.length-unreadMessageNumber && unreadMessageNumber!=0" class="new-msg-separator center">unread messages  <i class="material-icons">chat_bubble_outline</i></p>
       </div>
       </div>
   </div>

@@ -6,7 +6,7 @@ import { MessagesService } from './messages.service';
 import { UserService } from './user.service';
 import { EmojiService } from './emoji/emoji.service';
 import * as io from 'socket.io-client';
-
+declare var Materialize : any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,10 +29,15 @@ export class AppComponent implements OnInit, OnDestroy{
   constructor(private messagesService:MessagesService, private userService:UserService,private emojiService:EmojiService,private title: Title) {}
 
   newMessage() {
-    let messageToSend : Message = {author:this.userName, text:this.currentMessage, img: null, youtube: null};
-    this.messagesService.sendMessage(messageToSend);
-    // Clear
-    this.currentMessage = "";
+    if(this.currentMessage != "" && this.userName != ""){
+      let messageToSend : Message = {author:this.userName, text:this.currentMessage, img: null, youtube: null};
+      this.messagesService.sendMessage(messageToSend);
+      // Clear
+      this.currentMessage = "";
+    }
+    else{
+      Materialize.toast("You can't send empty message or with an empty username", 4000)
+    }
   }
 
   ngOnInit() {

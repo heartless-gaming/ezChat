@@ -19,7 +19,7 @@ export class UserService {
   }
   // Get the list of users
   getOnlineUsers(): Promise<string[]>{
-  return this.http.get(this.url+'/users')
+    return this.http.get('/users')
             .toPromise()
             .then(response => response.json().users as string[])
             .catch(this.handleError);

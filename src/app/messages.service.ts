@@ -22,7 +22,7 @@ export class MessagesService {
   }
 
   getMessagesHistory(): Promise<Message[]> {
-  return this.http.get(this.url+'/messages')
+  return this.http.get('/messages')
             .toPromise()
             .then(response => response.json() as Message[])
             .catch(this.handleError);

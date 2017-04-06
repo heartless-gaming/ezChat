@@ -11,7 +11,7 @@ declare var Materialize : any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MessagesService, UserService,EmojiService]
+  providers: [MessagesService, UserService, EmojiService]
 })
 
 export class AppComponent implements OnInit, OnDestroy{
@@ -26,7 +26,10 @@ export class AppComponent implements OnInit, OnDestroy{
   private unreadMessageNumber : number = 0;
   connection;
 
-  constructor(private messagesService:MessagesService, private userService:UserService,private emojiService:EmojiService,private title: Title) {}
+  constructor(private messagesService:MessagesService, private userService:UserService, private emojiService:EmojiService, private title: Title) {
+    // Init socket
+    // this.socket = io(this.url);
+  }
 
   newMessage() {
     if(this.currentMessage != "" && this.userName != ""){

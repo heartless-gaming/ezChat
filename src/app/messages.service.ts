@@ -15,7 +15,9 @@ export class MessagesService {
     return Promise.reject(error.message || error);
   }
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.socket = io(this.url);
+  }
 
   sendMessage(message: Message) {
     this.socket.emit('new message', message);
@@ -30,7 +32,6 @@ export class MessagesService {
 
   getMessages() {
     let observable = new Observable<Message>(observer => {
-      this.socket = io(this.url);
       this.socket.on('new message', (data: Message) => {
         observer.next(data);
       });

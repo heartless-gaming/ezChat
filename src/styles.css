@@ -168,3 +168,30 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 
 .brand-logo {
   margin-right: 25px; }
+
+ul.dropdown-menu.scrollable-menu {
+  bottom: 0;
+  position: absolute;
+  /* <Some displays> */
+  overflow-y: auto;
+  background: #424242;
+  padding: 5px;
+  margin-bottom: 15px;
+  /*Calculated in python3 with : print(max(array,key=len)) */
+  min-width: 280px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  max-height: calc(22.5px * 5 + 5px); }
+
+ul.dropdown-menu.scrollable-menu li > a {
+  color: white; }
+
+ul.dropdown-menu.scrollable-menu li.active > a {
+  color: #B71C1C; }
+
+ul.dropdown-menu.scrollable-menu li > a > span {
+  float: right; }
+
+.new-msg-separator {
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); }

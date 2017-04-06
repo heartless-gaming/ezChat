@@ -4,9 +4,11 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MentionDirective } from './mention.directive';
 import { MentionListComponent } from './mention-list.component';
 
+import { EmojifyModule } from 'angular2-emojify';
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        EmojifyModule
     ],
     exports: [
         MentionDirective,

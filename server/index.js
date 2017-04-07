@@ -150,17 +150,13 @@ io.on('connect', function (socket) {
   })
 
   // when the client emits 'typing', we broadcast it to others
-  socket.on('typing', function () {
-    socket.broadcast.emit('typing', {
-      author: socket.author
-    })
+  socket.on('typing', function (author) {
+    socket.broadcast.emit('typing',author)
   })
 
   // when the client emits 'stop typing', we broadcast it to others
-  socket.on('stop typing', function () {
-    socket.broadcast.emit('stop typing', {
-      author: socket.author
-    })
+  socket.on('stop typing', function (author) {
+    socket.broadcast.emit('stop typing',author )
   })
 
   // when the user disconnects.. perform this

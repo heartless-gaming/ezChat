@@ -159,12 +159,8 @@ export class MentionDirective {
           if (event.keyCode !== KEY_BACKSPACE) {
             mention += charPressed;
           }
-          let regEx : RegExp;
-          if(mention.charAt(1)=="+"){
-              regEx = new RegExp("^\\" + mention.substring(1), "i");
-          }else{
-            regEx = new RegExp("^" + mention.substring(1), "i");
-          }
+
+          let regEx = new RegExp("^" + mention.replace(/([^a-zA-Z0-9_:])/g,'\\$1').substring(1), "i");    
 
           let matches = this.items.filter(e => e.match(regEx) != null);
           this.searchList.items = matches;

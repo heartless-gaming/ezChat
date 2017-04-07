@@ -178,7 +178,7 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
   max-height: calc(22.5px * 5 + 5px); }
 
 .dropdown-menu.scrollable-menu li > a {
-  color: chartreuse; }
+  color: white; }
 
 .dropdown-menu.scrollable-menu li.active > a {
   color: #B71C1C; }

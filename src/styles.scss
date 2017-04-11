@@ -52,7 +52,7 @@ main {
 
 // New class to overcharge material css corectly
 .burger-button {
-  position: absolute;
+  position: fixed;
   color: #fff;
 }
 
@@ -73,7 +73,7 @@ main {
 }
 
 .app-logo {
-  position: absolute;
+  position: fixed;
   color: #fff;
   right: 20px;
   font-size: 3rem;

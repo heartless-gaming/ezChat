@@ -115,7 +115,7 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
   font-size: inherit; }
 
 .burger-button {
-  position: absolute;
+  position: fixed;
   color: #fff; }
 
 @media only screen and (min-width: 993px) {
@@ -131,7 +131,7 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
   text-shadow: 0px 0px 15px black; }
 
 .app-logo {
-  position: absolute;
+  position: fixed;
   color: #fff;
   right: 20px;
   font-size: 3rem;

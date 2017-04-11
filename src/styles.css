@@ -106,6 +106,98 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
     transform: rotate(0deg); } }
 
 /*
+ * Tooltip : sass partial located in scss/_tooltip.scss
+ */
+a[data-tooltip] {
+  position: relative; }
+
+a[data-tooltip]::before,
+a[data-tooltip]::after {
+  position: absolute;
+  display: none;
+  opacity: 0.85; }
+
+a[data-tooltip]::before {
+  /*
+   * using data-tooltip instead of title so we
+   * don't have the real tooltip overlapping
+   */
+  content: attr(data-tooltip);
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 5px;
+  /* we don't want the text to wrap */
+  white-space: nowrap;
+  text-decoration: none; }
+
+a[data-tooltip]::after {
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  content: ''; }
+
+a[data-tooltip]:hover::before,
+a[data-tooltip]:hover::after {
+  display: block; }
+
+/** positioning **/
+/* left tooltip */
+a[data-tooltip][data-placement="left"]::before {
+  top: -25%;
+  right: 100%;
+  margin-right: 10px; }
+
+a[data-tooltip][data-placement="left"]::after {
+  border-left-color: #000;
+  border-right: none;
+  top: 50%;
+  right: 100%;
+  margin-top: -6px;
+  margin-right: 4px; }
+
+/* right tooltip */
+a[data-tooltip][data-placement="right"]::before {
+  top: -25%;
+  left: 100%;
+  margin-left: 10px; }
+
+a[data-tooltip][data-placement="right"]::after {
+  border-right-color: #000;
+  border-left: none;
+  top: 50%;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: 4px; }
+
+/* top tooltip */
+a[data-tooltip][data-placement="top"]::before {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 10px; }
+
+a[data-tooltip][data-placement="top"]::after {
+  border-top-color: #000;
+  border-bottom: none;
+  bottom: 100%;
+  left: 10px;
+  margin-bottom: 4px; }
+
+/* bottom tooltip */
+a[data-tooltip][data-placement="bottom"]::before {
+  top: 100%;
+  left: 0;
+  margin-top: 10px; }
+
+a[data-tooltip][data-placement="bottom"]::after {
+  border-bottom-color: #000;
+  border-top: none;
+  top: 100%;
+  left: 10px;
+  margin-top: 4px; }
+
+/*
  * Custom Css & Material Design style rewritting yay
  */
 .icon-block {
@@ -141,7 +233,7 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
   text-shadow: 0px 0px 15px black; }
 
 .message-panel {
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 0.8rem 0 0.5rem 0;
   padding: 5px;
   border-radius: 5px;
   display: inline-block; }

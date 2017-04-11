@@ -88,12 +88,12 @@ let onChangeUsername = function (newUsername, socketId) {
   users[socketIdIndex] = newUsername
 }
 // Pull last message if the Message Array reach the maximum number of message
-let updateMessageHistory = function (author, text, img, youtube) {
+let updateMessageHistory = function (author, text, img, youtube, date) {
   if (messages.length >= ezchatConfig.massageHistory) {
     messages.shift() // Delete the oldest message
   }
 
-  messages.push({author: author, text: text, img: img, youtube: youtube})
+  messages.push({author: author, text: text, img: img, youtube: youtube, date: date})
 }
 
 /*
@@ -132,20 +132,23 @@ io.on('connect', function (socket) {
 
     if (youtubeMatch) youtubeLink = '//www.youtube.com/embed/' + youtubeMatch[1] + '?rel=0'
 
+    date = new Date();
     // update Message history
-    updateMessageHistory(author, text, imageLink, youtubeLink)
+    updateMessageHistory(author, text, imageLink, youtubeLink, date)
     // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
       author: author,
       text: text,
       img: imageLink,
-      youtube: youtubeLink
+      youtube: youtubeLink,
+      date : date
     })
     socket.emit('new message', {
       author: author,
       text: text,
       img: imageLink,
-      youtube: youtubeLink
+      youtube: youtubeLink,
+      date : date
     })
   })
 

@@ -3,4 +3,5 @@ export class Message {
   text: string;
   img: string;
   youtube: string;
+  date : Date;
 }

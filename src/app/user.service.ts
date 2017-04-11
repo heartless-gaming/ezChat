@@ -37,9 +37,39 @@ export class UserService {
     })
     return observable;
   }
+  someoneIsTyping() {
+    let observable = new Observable<string>(observer => {
+      this.socket.on('typing', (data) => {
+        observer.next(data);
+      });
+
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+  someoneStopTyping() {
+    let observable = new Observable<string>(observer => {
+      this.socket.on('stop typing', (data) => {
+        observer.next(data);
+      });
+
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+  isTyping(author:string){
+    this.socket.emit('typing',author);
+  }
+  stopTyping(author:string){
+    this.socket.emit('stop typing',author);
+  }
   // talk to the server to get a username that is not already used
   getAvailableUsername() {
-    this.socket.emit('add user')
+    this.socket.emit('add user');
     // this.socket.on('user joined')
   }
 

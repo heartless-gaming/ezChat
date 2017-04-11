@@ -24,6 +24,9 @@ export class AppComponent implements OnInit, OnDestroy{
   private emojis : string[] = [];
   private focus : boolean = false;
   private unreadMessageNumber : number = 0;
+
+  private usersTyping : string[] = [];
+  private userIsTyping : boolean  = false;
   connection;
 
   constructor(private messagesService:MessagesService, private userService:UserService, private emojiService:EmojiService, private title: Title) {}
@@ -62,6 +65,15 @@ export class AppComponent implements OnInit, OnDestroy{
     this.connection = this.userService.getUsers().subscribe(users => {
       this.onlineUsers = users;
     });
+    this.connection = this.userService.someoneIsTyping().subscribe(user => {
+      this.usersTyping.push(user);
+    });
+    this.connection = this.userService.someoneStopTyping().subscribe(user => {
+      var index = this.usersTyping.indexOf(user);    // <-- Not supported in <IE9
+        if (index !== -1) {
+          this.usersTyping.splice(index, 1);
+        }
+    });
   }
 
   ngOnDestroy() {
@@ -91,5 +103,16 @@ export class AppComponent implements OnInit, OnDestroy{
     this.focus = true;
     this.title.setTitle('EzChat');
     this.unreadMessageNumber=0;
+  }
+  isTyping(){
+      if(!this.userIsTyping){
+        this.userService.isTyping(this.userName);
+        this.userIsTyping = true;
+        setTimeout(() => {
+          this.userService.stopTyping(this.userName);
+          this.userIsTyping = false;
+        }
+        , 2000);
+      }
   }
 }

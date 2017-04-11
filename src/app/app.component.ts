@@ -69,7 +69,7 @@ export class AppComponent implements OnInit, OnDestroy{
       this.usersTyping.push(user);
     });
     this.connection = this.userService.someoneStopTyping().subscribe(user => {
-      var index = this.usersTyping.indexOf(user);    // <-- Not supported in <IE9
+      var index = this.usersTyping.indexOf(user);
         if (index !== -1) {
           this.usersTyping.splice(index, 1);
         }

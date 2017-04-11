@@ -21,6 +21,9 @@
     <div class="row row-messages">
       <div class="col s12" *ngFor="let message of allMessages; let i = index">
         <div class="card-panel message-panel grey darken-3">
+          <p class="message-date">
+            <a href="#"  [attr.data-tooltip]="message.date | date:'medium'" data-placement="bottom"  [innerHTML]="message.date | date:'jm'"></a>
+          </p>
           <div class="row row-text">
             <span class="message-author grey-text text-lighten-1">{{message.author}} : </span>
             <span class="white-text" [innerHTML]="message.text | linky | emojify">

@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
   newMessage() {
     if(this.currentMessage != "" && this.userName != ""){
-      let messageToSend : Message = {author:this.userName, text:this.currentMessage, img: null, youtube: null};
+      let messageToSend : Message = {author:this.userName, text:this.currentMessage, img: null, youtube: null, date:null};
       this.messagesService.sendMessage(messageToSend);
       // Clear
       this.currentMessage = "";

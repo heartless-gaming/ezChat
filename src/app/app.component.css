@@ -39,3 +39,12 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .message-img{
   border-radius: 20px;
 }
+.message-date {
+  margin-top: -22px;
+position: absolute;
+font-size: 10pt;
+color: #B0B0B0;
+}
+.message-date >a {
+color: #B0B0B0;
+}

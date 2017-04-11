@@ -43,6 +43,11 @@ main {
 @import 'scss/loader';
 
 /*
+ * Tooltip : sass partial located in scss/_tooltip.scss
+ */
+@import 'scss/tooltip';
+
+/*
  * Custom Css & Material Design style rewritting yay
  */
 .icon-block {
@@ -86,7 +91,7 @@ main {
 }
 
 .message-panel{
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 0.8rem 0 0.5rem 0;
   padding: 5px;
   border-radius: 5px;
   display:inline-block;

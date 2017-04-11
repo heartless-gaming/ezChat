@@ -114,6 +114,9 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
 .icon-block .material-icons {
   font-size: inherit; }
 
+.header-img {
+  width: 100%; }
+
 .burger-button {
   position: fixed;
   color: #fff; }
@@ -143,12 +146,25 @@ link : https://codepen.io/dfitzy/pen/XdaoWg
   border-radius: 5px;
   display: inline-block; }
 
+.chat-messages {
+  position: relative; }
+
 .chat-box {
   background-color: white;
   display: flex; }
 
-.header-img {
-  width: 100%; }
+.user-type-toast {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 3px;
+  opacity: 0.75;
+  background-color: #121212;
+  color: #fff; }
 
 .row-messages {
   width: 100%; }

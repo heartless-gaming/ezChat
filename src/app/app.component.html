@@ -35,12 +35,12 @@
         </div>
         <p *ngIf="i+1===allMessages.length-unreadMessageNumber && unreadMessageNumber!=0" class="new-msg-separator center">unread messages  <i class="material-icons">chat_bubble_outline</i></p>
       </div>
-      <p *ngIf="usersTyping.length > 0" class="white-text">
+      </div>
+      <p *ngIf="usersTyping.length > 0" class="user-type-toast">
         <span *ngFor="let userTyping of usersTyping">{{userTyping}}, </span>
         <span *ngIf="usersTyping.length > 1">are</span>
         <span *ngIf="usersTyping.length < 2">is</span>
-       typing</p>
-      </div>
+        typing</p>
   </div>
 </main>
 <footer>

@@ -1,6 +1,8 @@
 // Variables
+$backinblack: #121212;
 $darkgrey: #212121;
 $loaderred: #B71C1C;
+$grey: #424242;
 
 /*
  * Base
@@ -8,6 +10,7 @@ $loaderred: #B71C1C;
 body {
   background: $darkgrey;
 }
+
 // Must be a flex for main to set is height automaticaly
 // We are GROOT. App root element with a superhero twist
 .app-groot {
@@ -50,7 +53,10 @@ main {
   font-size: inherit;
 }
 
-// New class to overcharge material css corectly
+.header-img{
+  width:100%;
+}
+
 .burger-button {
   position: fixed;
   color: #fff;
@@ -61,7 +67,6 @@ main {
     display: none;
   }
 }
-
 
 .burger-icon {
   padding-top: 15px;
@@ -88,7 +93,7 @@ main {
 }
 
 .chat-messages{
-  // There used to be something here
+  position: relative;
 }
 
 .chat-box{
@@ -96,8 +101,18 @@ main {
   display: flex;
 }
 
-.header-img{
-  width:100%;
+.user-type-toast {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 3px;
+  opacity: 0.75;
+  background-color: $backinblack;
+  color: #fff;
 }
 
 .row-messages{
@@ -122,7 +137,7 @@ main {
   position: absolute;
   /* <Some displays> */
   overflow-y: auto;
-  background:#424242;
+  background: $grey;
   padding: 5px;
   margin-bottom: 15px;
   /*Calculated in python3 with : print(max(array,key=len)) */

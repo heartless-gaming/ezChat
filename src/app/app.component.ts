@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy{
   private unreadMessageNumber : number = 0;
 
   private usersTyping : string[] = [];
-  private userIsTyping : boolean  = false;
+  private userIsTyping : number  = null;
   connection;
 
   constructor(private messagesService:MessagesService, private userService:UserService, private emojiService:EmojiService, private title: Title) {}
@@ -105,14 +105,16 @@ export class AppComponent implements OnInit, OnDestroy{
     this.unreadMessageNumber=0;
   }
   isTyping(){
-      if(!this.userIsTyping){
-        this.userService.isTyping(this.userName);
-        this.userIsTyping = true;
-        setTimeout(() => {
-          this.userService.stopTyping(this.userName);
-          this.userIsTyping = false;
-        }
-        , 2000);
+      if(this.userIsTyping){
+        clearTimeout(this.userIsTyping);
       }
+      else{
+        this.userService.isTyping(this.userName);
+      }
+      this.userIsTyping = setTimeout(() => {
+        this.userService.stopTyping(this.userName);
+        this.userIsTyping = null;
+      }
+      , 2000);
   }
 }

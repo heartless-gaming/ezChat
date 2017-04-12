@@ -34,7 +34,7 @@
             <img *ngIf="message.img" class="responsive-img message-img" attr.src="{{message.img}}">
           </div>
           <div *ngIf="message.youtube" class="row row-text">
-            <iframe id="video" width="420" height="315" [src]="message.youtube | safe" frameborder="0" allowfullscreen></iframe>
+            <iframe class="youtubeIframe"id="video" width="420" height="315" [src]="message.youtube | safe" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
         <p *ngIf="i+1===allMessages.length-unreadMessageNumber && unreadMessageNumber!=0" class="new-msg-separator center">unread messages  <i class="material-icons">chat_bubble_outline</i></p>

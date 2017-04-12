@@ -57,3 +57,6 @@ bottom: 50px;
 display: block;
 width: 100%;
 }
+.youtubeIframe{
+  max-width: 100%;
+}

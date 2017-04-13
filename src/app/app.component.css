@@ -48,3 +48,15 @@ color: #B0B0B0;
 .message-date >a {
 color: #B0B0B0;
 }
+
+.random-citation{
+  line-height: 1.1em;
+border-left-color: #b71c1c;
+position: absolute;
+bottom: 50px;
+display: block;
+width: 100%;
+}
+.youtubeIframe{
+  max-width: 100%;
+}

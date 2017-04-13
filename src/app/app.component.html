@@ -9,6 +9,7 @@
   <li><a class="grey-text text-lighten-1" href="#!">{{onlineUsers.length}} - Online user<i class="material-icons grey-text text-lighten-1">perm_identity</i></a></li>
   <li><div class="divider grey-text text-lighten-1"></div></li>
   <li *ngFor="let user of onlineUsers"><a class="subheader grey-text text-lighten-1">{{user}}</a></li>
+  <li><blockquote class="random-citation grey-text text-lighten-1"></blockquote></li>
 </ul>
 <main angular2-auto-scroll lock-y-offset="10" observe-attributes>
   <header>
@@ -33,7 +34,7 @@
             <img *ngIf="message.img" class="responsive-img message-img" attr.src="{{message.img}}">
           </div>
           <div *ngIf="message.youtube" class="row row-text">
-            <iframe id="video" width="420" height="315" [src]="message.youtube | safe" frameborder="0" allowfullscreen></iframe>
+            <iframe class="youtubeIframe"id="video" width="420" height="315" [src]="message.youtube | safe" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
         <p *ngIf="i+1===allMessages.length-unreadMessageNumber && unreadMessageNumber!=0" class="new-msg-separator center">unread messages  <i class="material-icons">chat_bubble_outline</i></p>

@@ -210,7 +210,8 @@ a[data-tooltip][data-placement="bottom"]::after {
   width: 100%; }
 
 .burger-button {
-  position: absolute;
+  position: fixed;
+  z-index: 666;
   color: #fff; }
 
 @media only screen and (min-width: 993px) {
@@ -226,7 +227,8 @@ a[data-tooltip][data-placement="bottom"]::after {
   text-shadow: 0px 0px 15px black; }
 
 .app-logo {
-  position: absolute;
+  position: fixed;
+  z-index: 666;
   color: #fff;
   right: 20px;
   font-size: 3rem;

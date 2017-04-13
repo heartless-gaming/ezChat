@@ -63,7 +63,8 @@ main {
 }
 
 .burger-button {
-  position: absolute;
+  position: fixed;
+  z-index: 666; // WARNING Quick and dirty fix
   color: #fff;
 }
 
@@ -83,7 +84,8 @@ main {
 }
 
 .app-logo {
-  position: absolute;
+  position: fixed;
+  z-index: 666; // WARNING Quick and dirty fix
   color: #fff;
   right: 20px;
   font-size: 3rem;
@@ -183,7 +185,6 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
   color: $loaderred;
 }
 
-
 input:not([type]):focus:not([readonly]),
 input[type=text]:focus:not([readonly]),
 input[type=password]:focus:not([readonly]),
@@ -227,6 +228,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
   border-left-color: $loaderred;
   border-width: 2px;
 }
+
 .youtubeIframe{
   max-width: 100%;
 }

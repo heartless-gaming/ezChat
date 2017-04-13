@@ -63,7 +63,7 @@ main {
 }
 
 .burger-button {
-  position: fixed;
+  position: absolute;
   color: #fff;
 }
 
@@ -83,7 +83,7 @@ main {
 }
 
 .app-logo {
-  position: fixed;
+  position: absolute;
   color: #fff;
   right: 20px;
   font-size: 3rem;
@@ -223,7 +223,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
   bottom: 50px;
   display: block;
   position: absolute;
-  line-height: 0.1em;
+  line-height: 1.5em;
   border-left-color: $loaderred;
   border-width: 2px;
 }

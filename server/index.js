@@ -1,10 +1,10 @@
-/*
+/**
  * Require some deps
  */
 let path = require('path') // nodeJS path resolution module https://nodejs.org/api/path.html
 let _ = require('lodash') // helpers around javascript API
 
-/*
+/**
  * eZchat Server Configuration variables
  */
 let ezchatConfig = {
@@ -18,7 +18,7 @@ let ezchatConfig = {
   }
 }
 
-/*
+/**
  * Routing & Express Server
  */
 let express = require('express')
@@ -46,25 +46,17 @@ app.get('/messages', function (req, res) {
   res.send(messages)
 })
 
-/*
- * Variables & Functions for chatroom handling
+/**
+ * Variables for chatroom handling
  */
 let userCount = 0
 let users = []
 let usersSocketId = [] // Bind users to the correct socketid
-let messages = [
-  {author: 'yolo', text: 'swagg'},
-  {author: 'ADN', text: 'Skull, please stop believing in another Half-Life game.'},
-  {author: 'ADN', text: 'It\'s getting ridiculous at this point...'},
-  {author: 'Skullmasher', text: 'But I want to believe tho...'},
-  {author: 'G-Man', text: 'Prepare for unforeseen consequences'},
-  {author: 'Skullmasher', text: 'Holy Shit !'},
-  {author: 'Gordon Freeman', text: '*Gordon is mute*'},
-  {author: 'Smith', text: 'Why, Mr. Anderson? Why, why? Why do you do it? Why, why get up? Why keep fighting? Do you believe you\'re fighting... for something? For more than your survival? Can you tell me what it is? Do you even know? Is it freedom? Or truth? Perhaps peace? Could it be for love? Illusions, Mr. Anderson. Vagaries of perception. Temporary constructs of a feeble human intellect trying desperately to justify an existence that is without meaning or purpose. And all of them as artificial as the Matrix itself, although... Only a human mind could invent something as insipid as love. You must be able to see it, Mr. Anderson. You must know it by now. You can\'t win. It\'s pointless to keep fighting. Why, Mr. Anderson? Why? Why do you persist?'},
-  {author: 'Neo', text: 'Because I choose to.'},
-  {author: 'Skullmasher', text: 'https://youtu.be/_f6MRkTLT9o'},
-  {author: 'ADN', text: 'https://i.redd.it/evvrqz8448oy.jpg'}
-]
+let messages = []
+
+/**
+ * Functions for chatroom handling
+ */
 // Add default user
 let addDefaultUser = function (socketId) {
   userCount++
@@ -80,8 +72,8 @@ let addDefaultUser = function (socketId) {
 
   return username
 }
-
-let onChangeUsername = function (newUsername, socketId) {
+// Update username
+let updateUsername = function (newUsername, socketId) {
   // Find index of socketId and modify the user with that index
   let socketIdIndex = usersSocketId.indexOf(socketId)
 
@@ -96,27 +88,29 @@ let updateMessageHistory = function (author, text, img, youtube, date) {
   messages.push({author: author, text: text, img: img, youtube: youtube, date: date})
 }
 
-/*
+/**
  * Socket event manadgement
  */
 io.on('connect', function (socket) {
   socket.on('add user', function () {
-    let username = addDefaultUser(socket.id)
+    addDefaultUser(socket.id)
     // echo globally that a person has connected as a defaultuser
     socket.broadcast.emit('update users', users)
     socket.emit('update users', users)
   })
 
   socket.on('change username', function (newUsername) {
-    onChangeUsername(newUsername, socket.id) // update the user
+    updateUsername(newUsername, socket.id) // update the user
     socket.broadcast.emit('update users', users) // Asking client to refresh onlineUsers
     socket.emit('update users', users) // Asking client to refresh onlineUsers
   })
 
   // when a client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
+    const date = new Date()
     let author = data.author
     let text = data.text
+    let escapedText = _.escape(text)
 
     // Image matching
     let imageLink = null
@@ -132,34 +126,33 @@ io.on('connect', function (socket) {
 
     if (youtubeMatch) youtubeLink = '//www.youtube.com/embed/' + youtubeMatch[1] + '?rel=0'
 
-    date = new Date();
     // update Message history
     updateMessageHistory(author, text, imageLink, youtubeLink, date)
     // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
       author: author,
-      text: text,
+      text: escapedText,
       img: imageLink,
       youtube: youtubeLink,
-      date : date
+      date: date
     })
     socket.emit('new message', {
       author: author,
-      text: text,
+      text: escapedText,
       img: imageLink,
       youtube: youtubeLink,
-      date : date
+      date: date
     })
   })
 
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', function (author) {
-    socket.broadcast.emit('typing',author)
+    socket.broadcast.emit('typing', author)
   })
 
   // when the client emits 'stop typing', we broadcast it to others
   socket.on('stop typing', function (author) {
-    socket.broadcast.emit('stop typing',author )
+    socket.broadcast.emit('stop typing', author)
   })
 
   // when the user disconnects.. perform this

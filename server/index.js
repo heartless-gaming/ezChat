@@ -127,7 +127,7 @@ io.on('connect', function (socket) {
     if (youtubeMatch) youtubeLink = '//www.youtube.com/embed/' + youtubeMatch[1] + '?rel=0'
 
     // update Message history
-    updateMessageHistory(author, text, imageLink, youtubeLink, date)
+    updateMessageHistory(author, escapedText, imageLink, youtubeLink, date)
     // we tell all other clients to execute 'new message'
     socket.broadcast.emit('new message', {
       author: author,

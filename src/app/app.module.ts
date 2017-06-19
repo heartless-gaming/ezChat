@@ -10,13 +10,13 @@ import { SafePipe } from './safe.pipe';
 import { EmojifyModule } from 'angular2-emojify';
 import { MentionModule } from './mention';
 
-import { Angular2AutoScroll } from 'angular2-auto-scroll/lib/angular2-auto-scroll.directive';
+import { NgxAutoScroll } from "ngx-auto-scroll/lib/ngx-auto-scroll.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     SafePipe,
-    Angular2AutoScroll
+    NgxAutoScroll
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
 # ezChat
+
+⚠️ Archived project, we might decide to go back to it if we want to try a new web framework or something.
+
 <p align="center">
     <img src="preview.png">
-</p>  
+</p>
 
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![work in progress](https://img.shields.io/badge/status-work%20in%20progress-yellow.svg)
